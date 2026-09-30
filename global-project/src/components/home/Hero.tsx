@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
-import { Phone, ShieldCheck, CheckCircle2, Award, Clock, Star, Wrench, Sparkles, MapPin } from 'lucide-react';
+import { Phone, ShieldCheck, CheckCircle2, Award, Clock, Star, Wrench, Sparkles, MapPin, Tv } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { BookingForm } from './BookingForm';
 
@@ -12,8 +12,6 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ initialBrand, initialPincode }) => {
-  const [logoError, setLogoError] = useState(false);
-
   return (
     <section className="relative bg-white pt-8 pb-16 lg:pt-12 lg:pb-24 border-b border-gray-200 overflow-hidden">
       {/* Subtle Background Pattern */}
@@ -54,19 +52,19 @@ export const Hero: React.FC<HeroProps> = ({ initialBrand, initialPincode }) => {
               Specialized Laser COF bonding, chip-level motherboard reballing, and original backlight strip replacements. Direct doorstep service across Gandhipuram, RS Puram, Saravanampatti, and all Coimbatore PIN codes.
             </p>
 
-            {/* Trust Badges Bar */}
+            {/* Updated Hero Trust Badges (Exact 3 Badges: Verified Technicians, Free Diagnosis, All Brands Serviced) */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 border border-gray-200 text-xs font-bold text-[#0A2342]">
-                <ShieldCheck className="h-4 w-4 text-[#FF8C00]" />
-                <span>90-Day Spares Warranty</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 border border-gray-200 text-xs font-bold text-[#0A2342]">
-                <Award className="h-4 w-4 text-[#0A2342]" />
+              <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-gray-100 border border-gray-200 text-xs sm:text-sm font-bold text-[#0A2342] shadow-sm">
+                <Award className="h-4 w-4 text-[#FF8C00]" />
                 <span>Verified Technicians</span>
               </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-100 border border-gray-200 text-xs font-bold text-[#0A2342]">
+              <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-gray-100 border border-gray-200 text-xs sm:text-sm font-bold text-[#0A2342] shadow-sm">
                 <CheckCircle2 className="h-4 w-4 text-emerald-600" />
-                <span>Free Diagnosis On-Site</span>
+                <span>Free Diagnosis</span>
+              </div>
+              <div className="flex items-center gap-2 px-3.5 py-2 rounded-lg bg-gray-100 border border-gray-200 text-xs sm:text-sm font-bold text-[#0A2342] shadow-sm">
+                <Tv className="h-4 w-4 text-[#0A2342]" />
+                <span>All Brands Serviced</span>
               </div>
             </div>
 

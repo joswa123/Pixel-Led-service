@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { Tv, Phone, Menu, X, ShieldCheck, Clock } from 'lucide-react';
+import { Tv, Phone, Menu, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export const Header: React.FC = () => {
@@ -31,40 +31,40 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Navigation Bar */}
+      {/* Main Navigation Bar - Prominent Logo Size (h-12 md:h-14) and py-4 */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 sm:h-18 items-center justify-between">
-          {/* Logo Left */}
-          <a href="#" className="flex items-center gap-3 group">
+        <div className="flex py-3 sm:py-4 items-center justify-between min-h-[72px] md:min-h-[80px]">
+          {/* Logo Left - Prominent h-12 md:h-14 */}
+          <a href="#" className="flex items-center gap-3 group shrink-0">
             {!logoError ? (
-              <div className="relative h-10 w-10 sm:h-12 sm:w-12 rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white shrink-0 group-hover:scale-105 transition-transform">
+              <div className="relative h-12 w-12 md:h-14 md:w-14 rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white shrink-0 group-hover:scale-105 transition-transform">
                 <Image
                   src="/logo-main.jpg"
                   alt="GLOBAL TV Service Coimbatore Logo"
                   fill
                   className="object-contain p-0.5"
                   onError={() => setLogoError(true)}
-                  sizes="48px"
+                  sizes="(max-width: 768px) 48px, 56px"
                   priority
                 />
               </div>
             ) : (
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF8C00] text-white shadow-sm group-hover:scale-105 transition-transform">
-                <Tv className="h-6 w-6" />
+              <div className="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl bg-[#FF8C00] text-white shadow-sm group-hover:scale-105 transition-transform">
+                <Tv className="h-7 w-7" />
               </div>
             )}
             <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl font-black tracking-tight text-[#0A2342] leading-none">
+              <span className="text-xl sm:text-2xl md:text-[1.65rem] font-black tracking-tight text-[#0A2342] leading-none">
                 GLOBAL <span className="text-[#FF8C00]">TV</span>
               </span>
-              <span className="text-[10px] font-bold text-gray-500 uppercase tracking-wider mt-0.5">
+              <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-wider mt-1">
                 Service Centre Coimbatore
               </span>
             </div>
           </a>
 
-          {/* Center Nav */}
-          <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-gray-700">
+          {/* Center Nav - Centered */}
+          <nav className="hidden lg:flex items-center justify-center gap-8 text-sm font-semibold text-gray-700 mx-auto">
             <a href="#" className="hover:text-[#FF8C00] transition-colors">
               Home
             </a>
@@ -88,8 +88,8 @@ export const Header: React.FC = () => {
             </a>
           </nav>
 
-          {/* Right Action */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action - "Book Repair" Button on the right */}
+          <div className="hidden sm:flex items-center gap-3 shrink-0">
             <a
               href="tel:8122992491"
               className="flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs font-bold text-[#0A2342] bg-gray-100 hover:bg-gray-200 transition-colors"
@@ -100,7 +100,7 @@ export const Header: React.FC = () => {
 
             <a
               href="#booking-form"
-              className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-white bg-[#FF8C00] hover:bg-[#EA580C] shadow-cta transition-all hover:scale-105 active:scale-95"
+              className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-white bg-[#FF8C00] hover:bg-[#EA580C] shadow-cta transition-all hover:scale-105 active:scale-95"
             >
               Book Repair
             </a>
@@ -110,7 +110,7 @@ export const Header: React.FC = () => {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100"
+            className="lg:hidden p-2.5 rounded-lg text-gray-700 hover:bg-gray-100"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}

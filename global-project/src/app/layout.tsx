@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
+import Preloader from '@/components/common/Preloader';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { MobileStickyCTA } from '@/components/common/MobileStickyCTA';
@@ -72,6 +73,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen flex flex-col bg-white text-gray-900 font-sans antialiased selection:bg-[#FF8C00] selection:text-white">
+        <Preloader />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
