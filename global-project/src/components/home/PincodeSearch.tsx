@@ -90,7 +90,7 @@ export const PincodeSearch: React.FC<PincodeSearchProps> = ({ onSelectPincode })
   };
 
   const handleWhatsAppArea = (area: string, pin: string) => {
-    const msg = `Hi Global TV, I need doorstep TV repair in *${area} (${pin})*, Coimbatore.`;
+    const msg = `Hi BrightSide TV, I need doorstep TV repair in *${area} (${pin})*, Coimbatore.`;
     window.open(`https://wa.me/918122992491?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
@@ -146,7 +146,7 @@ export const PincodeSearch: React.FC<PincodeSearchProps> = ({ onSelectPincode })
               No exact match for &quot;{searchQuery}&quot;
             </h3>
             <p className="text-xs sm:text-sm text-gray-500 mt-1 max-w-md mx-auto">
-              Don&apos;t worry! We service all rural and urban areas in Coimbatore District. Call or WhatsApp us directly.
+              Don&apos;t worry! BrightSide TV services all rural and urban areas in Coimbatore District. Call or WhatsApp us directly.
             </p>
             <div className="mt-4 flex items-center justify-center gap-3">
               <a
@@ -156,7 +156,7 @@ export const PincodeSearch: React.FC<PincodeSearchProps> = ({ onSelectPincode })
                 Call 8122992491
               </a>
               <a
-                href="https://wa.me/918122992491?text=Hi%20Global%20TV,%20do%20you%20service%20my%20area%20in%20Coimbatore?"
+                href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20do%20you%20service%20my%20area%20in%20Coimbatore?"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 rounded-lg bg-[#25D366] text-white text-xs font-bold"
@@ -225,7 +225,7 @@ export const PincodeSearch: React.FC<PincodeSearchProps> = ({ onSelectPincode })
                               </div>
 
                               <div className="mt-2 pt-1 border-t border-gray-200/60 flex items-center justify-between text-[10px]">
-                                <span className="text-emerald-600 font-semibold">Day 1-2 Doorstep</span>
+                                <span className="text-emerald-600 font-semibold">In Hours to 1 Day</span>
                                 <button
                                   type="button"
                                   onClick={(e) => {

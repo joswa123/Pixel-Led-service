@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { HelpCircle, ChevronDown } from 'lucide-react';
+import { HelpCircle, ChevronDown, Phone } from 'lucide-react';
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -9,26 +9,26 @@ export const FAQ: React.FC = () => {
   const faqs = [
     {
       q: 'How much does LED TV repair cost in Coimbatore?',
-      a: 'Our doorstep diagnosis & wall-mount services start from just ₹399. Screen panel repairs start at ₹599, motherboard repairs at ₹850, backlight replacement at ₹1,200, and Laser COF bonding at ₹2,500. We provide an exact itemized estimate before any work begins.',
+      a: 'Call our team at 8122992491 for a free, transparent quote. Repair costs vary depending on your TV brand, screen size (32" to 85"+), and the specific component needed. We provide an exact upfront estimate before beginning any work with zero hidden diagnostic fees.',
     },
     {
       q: 'Do you repair Smart TVs?',
-      a: 'Yes, we specialize in Android TV, Google TV, WebOS (LG), Tizen (Samsung), VIDAA, and PatchWall (Mi). We fix motherboard reboot loops, Wi-Fi connectivity issues, HDMI port failures, and firmware crashes.',
+      a: 'Yes, BrightSide TV specializes in all Smart TV operating systems including Android TV, Google TV, LG WebOS, Samsung Tizen, VIDAA, and Mi PatchWall. We resolve motherboard reboot loops, Wi-Fi connectivity problems, HDMI port issues, and firmware crashes.',
     },
     {
-      q: 'What if my TV has no display but sound works?',
-      a: 'This is the classic symptom of a failed LED backlight array or backlight driver inverter circuit. We replace the faulty strips with original manufacturer-grade LED arrays without needing an expensive panel replacement.',
+      q: 'What if my TV has sound but no display?',
+      a: 'This is the classic symptom of a failed LED backlight array or backlight driver inverter circuit. We replace the faulty strips with 100% brand-new manufacturer-grade LED arrays backed by a 6-Month Warranty without needing an expensive panel replacement.',
     },
     {
-      q: 'Do you offer warranty?',
-      a: 'Yes! We provide an official 90-Day Written Warranty on all replaced spare parts and repair services. If any recurring issue occurs within 90 days, we fix it at zero extra charge.',
+      q: 'Do you offer warranty on repairs?',
+      a: 'Yes! BrightSide TV provides official written warranty cards on all replaced components: 1-Year Comprehensive Warranty on Display & Panel replacements, and 6-Month Written Warranty on Motherboard and Backlight replacements.',
     },
     {
-      q: 'How long does repair take?',
-      a: 'We operate on a strict Day 1-2 turnaround model. Doorstep initial inspection is typically conducted within 2-4 hours of booking, and standard motherboard, power supply, and backlight repairs are completed in 24 to 48 hours.',
+      q: 'How long does the TV repair take?',
+      a: 'We try to reach you within a day, and many locations across Coimbatore receive doorstep service in just a few hours based on your area. Doorstep diagnostic is arranged promptly, and common repairs like backlight replacement, motherboard fixes, and wall-mounting are completed swiftly.',
     },
     {
-      q: 'Do you service all Coimbatore areas?',
+      q: 'Do you service all Coimbatore areas and PIN codes?',
       a: 'Yes, we cover all 6 zones in Coimbatore District — including Gandhipuram, RS Puram, Peelamedu, Saravanampatti, Singanallur, Vadavalli, Thudiyalur, Sundarapuram, and surrounding suburban corridors.',
     },
     {
@@ -50,13 +50,13 @@ export const FAQ: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#FF8C00] bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200 mb-2">
-            <HelpCircle className="h-3.5 w-3.5" /> Clear Answers
+            <HelpCircle className="h-3.5 w-3.5" /> Clear Answers &amp; Policies
           </div>
           <h2 className="text-3xl sm:text-4xl font-black text-[#0A2342] tracking-tight">
             Frequently Asked Questions
           </h2>
           <p className="text-sm sm:text-base text-gray-600 mt-1">
-            Everything you need to know about our TV repair process, pricing, and warranty in Coimbatore.
+            Everything you need to know about BrightSide TV repair process, free quotes, and warranty policies in Coimbatore.
           </p>
         </div>
 
@@ -91,6 +91,19 @@ export const FAQ: React.FC = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* FAQ Helpline Callout */}
+        <div className="mt-8 text-center bg-gray-50 rounded-xl p-5 border border-gray-200">
+          <p className="text-xs sm:text-sm text-gray-600 font-medium">
+            Need an instant quote for your TV brand &amp; issue? Call our technical helpline:
+          </p>
+          <a
+            href="tel:8122992491"
+            className="inline-flex items-center gap-2 mt-2 font-black text-sm sm:text-base text-[#0A2342] hover:text-[#FF8C00] transition-colors"
+          >
+            <Phone className="h-4 w-4 text-[#FF8C00]" /> 8122992491 (Mon - Sat: 9 AM - 8 PM)
+          </a>
         </div>
       </div>
     </section>

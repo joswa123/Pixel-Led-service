@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Star, Quote, MapPin, CheckCircle2 } from 'lucide-react';
+import { Star, Quote, MapPin } from 'lucide-react';
 
 export const Testimonials: React.FC = () => {
   const reviews = [
@@ -11,7 +11,7 @@ export const Testimonials: React.FC = () => {
       brand: 'Sony Bravia 55" 4K',
       rating: 5,
       comment:
-        'Official service center told me I had to change the entire panel for ₹22,000 because of red light standby blinking. Global TV diagnosed a faulty LED backlight circuit and fixed it in Day 2 for ₹1,800. Picture is razor sharp now.',
+        'Official service center told me I had to change the entire expensive panel because of red light standby blinking. BrightSide TV diagnosed a faulty LED backlight circuit and fixed it in Day 2 at home for a fraction of the cost. Picture is crystal clear now.',
     },
     {
       name: 'Dr. Anand Kumar',
@@ -19,7 +19,7 @@ export const Testimonials: React.FC = () => {
       brand: 'Samsung 65" QLED',
       rating: 5,
       comment:
-        'Horizontal lines on my QLED screen were fixed using their Laser COF micro-bonding equipment. Very punctual doorstep pickup and safe return with written 90-day warranty card.',
+        'Horizontal lines on my QLED screen were fixed using their Laser COF micro-bonding equipment. Very punctual doorstep pickup and safe return with written warranty card.',
     },
     {
       name: 'Priya Sundar',
@@ -27,7 +27,7 @@ export const Testimonials: React.FC = () => {
       brand: 'LG 43" Smart WebOS',
       rating: 5,
       comment:
-        'My LG TV was stuck on the boot logo in a restart loop. The technician re-flashed the motherboard firmware within 24 hours at home. Very reasonable rates and transparent pricing.',
+        'My LG TV was stuck on the boot logo in a restart loop. The BrightSide TV technician re-flashed the motherboard firmware within 24 hours at home. Very reasonable rates and transparent communication.',
     },
   ];
 

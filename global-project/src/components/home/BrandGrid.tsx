@@ -190,7 +190,7 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
           </div>
 
           <span className="text-xs font-semibold text-gray-500">
-            Showing {displayedBrands.length} Brands &bull; Day 1-2 Turnaround
+            Showing {displayedBrands.length} Brands &bull; In Hours to 1 Day
           </span>
         </div>
 
@@ -243,7 +243,7 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
                 </div>
 
                 <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between text-xs">
-                  <span className="text-gray-400 font-medium">90-Day Spares</span>
+                  <span className="text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded text-[10px]">All Brands Serviced</span>
                   {isComingSoon ? (
                     <span className="text-[#0A2342] font-bold group-hover:text-[#FF8C00] flex items-center gap-1">
                       Notify Me &rarr;
@@ -270,12 +270,12 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
                 Have an unlisted TV model or imported display?
               </h4>
               <p className="text-xs text-gray-500">
-                We repair all customized 4K, 8K OLED, and commercial monitors across Coimbatore.
+                BrightSide TV repairs all customized 4K, 8K OLED, and commercial monitors across Coimbatore.
               </p>
             </div>
           </div>
 
-          <Button20 href="https://wa.me/918122992491?text=Hi%20Global%20TV,%20I%20have%20an%20unlisted%20TV%20brand%20needing%20repair.">
+          <Button20 href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20have%20an%20unlisted%20TV%20brand%20needing%20repair.">
             Inquire Custom Model on WhatsApp
           </Button20>
         </div>
@@ -301,7 +301,7 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
             </div>
 
             <p className="text-xs text-gray-600 mb-4 leading-relaxed">
-              We are expanding direct inventory for <strong>{notifyModalBrand.name}</strong>. Enter your mobile number to receive immediate WhatsApp notification when components arrive.
+              BrightSide TV is expanding direct inventory for <strong>{notifyModalBrand.name}</strong>. Enter your mobile number to receive immediate WhatsApp notification when components arrive.
             </p>
 
             <form onSubmit={handleNotifySubmit} className="space-y-3">

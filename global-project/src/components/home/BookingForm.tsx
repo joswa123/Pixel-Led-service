@@ -6,11 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { FaWhatsapp } from 'react-icons/fa';
-import { ShieldCheck, Clock, CheckCircle2, Send, Zap } from 'lucide-react';
+import { ShieldCheck, Clock, CheckCircle2, Send, Zap, Phone } from 'lucide-react';
 
 import { FloatingInput } from '@/components/watermelon/floating-input';
 import { activeBrands } from '@/data/brands';
-import { services } from '@/data/services';
 
 const formSchema = z.object({
   name: z.string().min(2, 'Please enter your name'),
@@ -42,10 +41,10 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const mainServices = [
-    { label: 'Panel Repair', value: 'LED/LCD Panel Repair', price: '₹599' },
-    { label: 'Motherboard', value: 'Motherboard & Power Board', price: '₹850' },
-    { label: 'Backlight Strip', value: 'Backlight / LED Strip', price: '₹1,200' },
-    { label: 'Wall Mount', value: 'TV Wall Mount & Install', price: '₹399' },
+    { label: 'Panel Repair', value: 'LED/LCD Panel Repair', tag: 'Free Quote' },
+    { label: 'Motherboard', value: 'Motherboard & Power Board', tag: 'Free Quote' },
+    { label: 'Backlight Strip', value: 'Backlight / LED Strip', tag: 'Free Quote' },
+    { label: 'Wall Mount', value: 'TV Wall Mount & Install', tag: 'Same Day' },
   ];
 
   const form = useForm<FormValues>({
@@ -63,7 +62,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const onSubmit = (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      const message = `Hi Global TV, I need repair service.
+      const message = `Hi BrightSide TV, I need repair service.
 Name: ${data.name}
 Phone: ${data.phone}
 Brand: ${data.brand}
@@ -74,7 +73,7 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
       const whatsappUrl = `https://wa.me/918122992491?text=${encodeURIComponent(message)}`;
 
       toast.success('Opening WhatsApp — we\'ll respond within 2 hours.', {
-        description: 'Connecting to technician dispatch directly.',
+        description: 'Connecting to BrightSide TV technician dispatch.',
         duration: 4000,
         icon: <FaWhatsapp className="h-5 w-5 text-[#25D366]" />,
       });
@@ -90,7 +89,7 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
   return (
     <div
       id="booking-form"
-      className={`w-full rounded-xl border border-gray-200 bg-white p-6 sm:p-7 shadow-card ${className}`}
+      className={`w-full rounded-2xl border border-gray-200 bg-white p-6 sm:p-7 shadow-card ${className}`}
     >
       <div className="mb-5 pb-4 border-b border-gray-100">
         <div className="flex items-center justify-between gap-2 mb-1.5">
@@ -98,14 +97,14 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
             <Zap className="h-3 w-3 fill-current" /> Instant Dispatch
           </span>
           <span className="text-xs font-semibold text-gray-500">
-            Day 1-2 Turnaround
+            In Hours to 1 Day
           </span>
         </div>
         <h3 className="text-xl sm:text-2xl font-black text-[#0A2342] tracking-tight">
           Book Your TV Repair
         </h3>
         <p className="text-xs sm:text-sm text-gray-600 mt-1">
-          Doorstep inspection across Coimbatore with 90-day warranty on spare parts.
+          Doorstep inspection across Coimbatore. Call or message for a <strong>Free Quote</strong>.
         </p>
       </div>
 
@@ -197,7 +196,7 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
           </div>
         </div>
 
-        {/* Service Type Selection */}
+        {/* Service Type Selection (NO PRICES) */}
         <div>
           <label className="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
             Service Required <span className="text-[#FF8C00]">*</span>
@@ -219,7 +218,7 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
                   <div className="flex items-center justify-between font-bold">
                     <span>{svc.label}</span>
                     <span className={selected ? 'text-amber-300' : 'text-[#FF8C00]'}>
-                      {svc.price}
+                      {svc.tag}
                     </span>
                   </div>
                 </button>
@@ -262,13 +261,23 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
           <Send className="h-4 w-4 ml-1" />
         </button>
 
+        {/* Direct Call Secondary Option */}
+        <div className="text-center pt-1">
+          <a
+            href="tel:8122992491"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A2342] hover:text-[#FF8C00] transition-colors"
+          >
+            <Phone className="h-3.5 w-3.5 text-[#FF8C00]" /> Need instant diagnosis? <span className="underline">Call 8122992491</span>
+          </a>
+        </div>
+
         {/* Micro Trust Guarantee */}
-        <div className="flex items-center justify-center gap-4 pt-1 text-[11px] font-semibold text-gray-500">
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-1 text-[11px] font-semibold text-gray-500">
           <span className="flex items-center gap-1">
-            <ShieldCheck className="h-3.5 w-3.5 text-[#0A2342]" /> 90-Day Spares Warranty
+            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Free Doorstep Diagnosis
           </span>
           <span className="flex items-center gap-1">
-            <Clock className="h-3.5 w-3.5 text-emerald-600" /> Day 1-2 Turnaround
+            <Clock className="h-3.5 w-3.5 text-[#0A2342]" /> Reach Within a Day (Hours by Location)
           </span>
         </div>
       </form>

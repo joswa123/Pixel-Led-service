@@ -14,14 +14,14 @@ export const HowItWorks: React.FC = () => {
     {
       num: '02',
       icon: Truck,
-      title: 'Doorstep Visit (Day 1-2)',
-      desc: 'Certified technician arrives at your Coimbatore doorstep with testing tools & replacement modules.',
+      title: 'Doorstep Visit (In Hours to 1 Day)',
+      desc: 'We try to reach you within a day, and some areas get service in hours based on your location with doorstep testing & OEM spares.',
     },
     {
       num: '03',
       icon: ShieldCheck,
-      title: 'Repair & 90-Day Warranty',
-      desc: 'On-site chip-level repair or laser bonding with 15-point quality check & written 90-day warranty card.',
+      title: 'Repair & Warranty',
+      desc: 'On-site chip-level repair or laser bonding with 15-point quality check & official written warranty card.',
     },
   ];
 

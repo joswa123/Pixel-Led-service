@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
-import { Tv, Phone, Menu, X } from 'lucide-react';
+import { Phone, Menu, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { BrightSideLogo } from './BrightSideLogo';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [logoError, setLogoError] = useState(false);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md transition-all shadow-sm">
@@ -17,12 +16,16 @@ export const Header: React.FC = () => {
           <div className="flex items-center gap-2">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-emerald-300 font-semibold">Coimbatore Doorstep Service:</span>
-            <span className="hidden sm:inline text-gray-200">Day 1-2 Turnaround &bull; 90-Day Spares Warranty</span>
+            <span className="hidden sm:inline text-gray-200">All Brands &bull; In Hours to 1 Day &bull; Free Diagnosis</span>
           </div>
 
           <div className="flex items-center gap-4 text-xs">
-            <a href="tel:8122992491" className="flex items-center gap-1.5 text-amber-300 hover:text-white font-bold transition-colors">
-              <Phone className="h-3 w-3" />
+            <a
+              href="tel:8122992491"
+              itemProp="telephone"
+              className="flex items-center gap-1.5 text-amber-300 hover:text-white font-bold transition-colors"
+            >
+              <Phone className="h-3 w-3 fill-current" />
               <span>Helpline: 8122992491</span>
             </a>
             <span className="hidden md:inline text-gray-400">|</span>
@@ -31,39 +34,15 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Navigation Bar - Prominent Logo Size (h-12 md:h-14) and py-4 */}
+      {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex py-3 sm:py-4 items-center justify-between min-h-[72px] md:min-h-[80px]">
-          {/* Logo Left - Prominent h-12 md:h-14 */}
-          <a href="#" className="flex items-center gap-3 group shrink-0">
-            {!logoError ? (
-              <div className="relative h-12 w-12 md:h-14 md:w-14 rounded-xl overflow-hidden border border-gray-200 shadow-sm bg-white shrink-0 group-hover:scale-105 transition-transform">
-                <Image
-                  src="/logo-main.jpg"
-                  alt="GLOBAL TV Service Coimbatore Logo"
-                  fill
-                  className="object-contain p-0.5"
-                  onError={() => setLogoError(true)}
-                  sizes="(max-width: 768px) 48px, 56px"
-                  priority
-                />
-              </div>
-            ) : (
-              <div className="flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-xl bg-[#FF8C00] text-white shadow-sm group-hover:scale-105 transition-transform">
-                <Tv className="h-7 w-7" />
-              </div>
-            )}
-            <div className="flex flex-col">
-              <span className="text-xl sm:text-2xl md:text-[1.65rem] font-black tracking-tight text-[#0A2342] leading-none">
-                GLOBAL <span className="text-[#FF8C00]">TV</span>
-              </span>
-              <span className="text-[10px] md:text-[11px] font-bold text-gray-500 uppercase tracking-wider mt-1">
-                Service Centre Coimbatore
-              </span>
-            </div>
+        <div className="flex py-2.5 sm:py-3 items-center justify-between min-h-[68px] md:min-h-[76px]">
+          {/* Logo Left: BrightSide TV Letter-Only Wordmark (h-12 md:h-14) - No Subtitle */}
+          <a href="#" className="flex items-center group shrink-0" aria-label="BrightSide TV Home">
+            <BrightSideLogo className="h-10 sm:h-12 md:h-14 w-auto group-hover:scale-105 transition-transform" />
           </a>
 
-          {/* Center Nav - Centered */}
+          {/* Center Nav */}
           <nav className="hidden lg:flex items-center justify-center gap-8 text-sm font-semibold text-gray-700 mx-auto">
             <a href="#" className="hover:text-[#FF8C00] transition-colors">
               Home
@@ -88,13 +67,14 @@ export const Header: React.FC = () => {
             </a>
           </nav>
 
-          {/* Right Action - "Book Repair" Button on the right */}
+          {/* Right Action: Single Orange "Book Repair" Button + Helpline */}
           <div className="hidden sm:flex items-center gap-3 shrink-0">
             <a
               href="tel:8122992491"
-              className="flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs font-bold text-[#0A2342] bg-gray-100 hover:bg-gray-200 transition-colors"
+              itemProp="telephone"
+              className="flex items-center gap-2 px-3.5 py-2.5 rounded-lg text-xs font-bold text-[#0A2342] bg-gray-100 hover:bg-gray-200 transition-colors shadow-xs"
             >
-              <Phone className="h-3.5 w-3.5 text-[#0A2342]" />
+              <Phone className="h-3.5 w-3.5 text-[#FF8C00] fill-current" />
               <span>8122992491</span>
             </a>
 
@@ -174,12 +154,13 @@ export const Header: React.FC = () => {
           <div className="pt-2 border-t border-gray-100 flex gap-2">
             <a
               href="tel:8122992491"
+              itemProp="telephone"
               className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#0A2342] py-2.5 text-xs font-bold text-white"
             >
-              <Phone className="h-4 w-4" /> Call 8122992491
+              <Phone className="h-4 w-4 text-[#FF8C00] fill-current" /> Call 8122992491
             </a>
             <a
-              href="https://wa.me/918122992491?text=Hi%20Global%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
+              href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#25D366] py-2.5 text-xs font-bold text-white"

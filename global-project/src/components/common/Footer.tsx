@@ -1,53 +1,28 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import { Tv, Phone, MapPin, Mail, Clock, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { FaWhatsapp, FaGoogle } from 'react-icons/fa';
+import { BrightSideLogo } from './BrightSideLogo';
 
 export const Footer: React.FC = () => {
-  const [logoError, setLogoError] = useState(false);
-
   return (
     <footer id="contact" className="bg-[#0A2342] text-gray-300 pt-16 pb-28 md:pb-14 border-t border-navy-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1: Logo & Brief Description */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              {!logoError ? (
-                <div className="relative h-10 w-10 rounded-xl overflow-hidden bg-white border border-gray-200 p-0.5 shrink-0">
-                  <Image
-                    src="/logo-main.jpg"
-                    alt="GLOBAL TV Service Coimbatore Logo"
-                    fill
-                    className="object-contain p-0.5"
-                    onError={() => setLogoError(true)}
-                    sizes="40px"
-                  />
-                </div>
-              ) : (
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FF8C00] text-white font-bold">
-                  <Tv className="h-5 w-5" />
-                </div>
-              )}
-              <div className="flex flex-col">
-                <span className="text-xl font-black text-white leading-tight">
-                  GLOBAL <span className="text-[#FF8C00]">TV</span>
-                </span>
-                <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                  Service Centre Coimbatore
-                </span>
-              </div>
+            <div className="flex items-center">
+              <BrightSideLogo variant="light" className="h-10 md:h-12 w-auto" />
             </div>
 
             <p className="text-sm text-gray-300 leading-relaxed">
-              Coimbatore&apos;s trusted multi-brand LED, OLED, 4K &amp; Smart TV repair service. Certified chip-level repairs, Laser COF bonding, and 90-day spare parts warranty.
+              Coimbatore&apos;s trusted multi-brand LED, OLED, 4K &amp; Smart TV repair service. Certified chip-level repairs, Laser COF bonding, and written warranty on all spare parts.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://wa.me/918122992491"
+                href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -57,6 +32,7 @@ export const Footer: React.FC = () => {
               </a>
               <a
                 href="tel:8122992491"
+                itemProp="telephone"
                 aria-label="Phone"
                 className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 hover:bg-[#FF8C00] text-white transition-colors"
               >
@@ -100,7 +76,7 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <a href="#faq" className="hover:text-[#FF8C00] transition-colors">
-                  FAQ &amp; Pricing
+                  FAQ &amp; Warranty
                 </a>
               </li>
               <li>
@@ -136,9 +112,10 @@ export const Footer: React.FC = () => {
             <div className="space-y-3 text-sm text-gray-300">
               <a
                 href="tel:8122992491"
+                itemProp="telephone"
                 className="flex items-start gap-2.5 hover:text-[#FF8C00] transition-colors"
               >
-                <Phone className="h-4 w-4 text-[#FF8C00] shrink-0 mt-0.5" />
+                <Phone className="h-4 w-4 text-[#FF8C00] shrink-0 mt-0.5 fill-current" />
                 <div>
                   <div className="font-bold text-white">8122992491</div>
                   <div className="text-xs text-gray-400">Direct Technician Helpline</div>
@@ -146,7 +123,7 @@ export const Footer: React.FC = () => {
               </a>
 
               <a
-                href="https://wa.me/918122992491?text=Hi%20Global%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
+                href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-2.5 hover:text-emerald-400 transition-colors"
@@ -157,6 +134,13 @@ export const Footer: React.FC = () => {
                   <div className="text-xs text-emerald-300">WhatsApp Instant Booking</div>
                 </div>
               </a>
+
+              <div className="flex items-start gap-2.5">
+                <Mail className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
+                <div className="text-xs text-gray-300">
+                  support@brightsidetv.in
+                </div>
+              </div>
 
               <div className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
@@ -179,10 +163,10 @@ export const Footer: React.FC = () => {
         {/* Bottom copyright line */}
         <div className="pt-8 border-t border-navy-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <div>
-            &copy; 2026 GLOBAL TV. All rights reserved.
+            &copy; 2026 BrightSide TV. All rights reserved.
           </div>
           <div className="text-center sm:text-right text-gray-300 font-medium">
-            Service available across all Coimbatore pincodes &bull; Day 1-2 Doorstep Turnaround &bull; 90-Day Spares Warranty
+            Service available across all Coimbatore pincodes &bull; Doorstep in Hours to 1 Day &bull; Helpline: 8122992491
           </div>
         </div>
       </div>
