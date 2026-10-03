@@ -152,10 +152,10 @@ export const PincodeSearch: React.FC<PincodeSearchProps> = ({ onSelectPincode })
          ───────────────────────────────────────────────────────────── */}
       <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none select-none">
         <Image
-          src="/assets/coimaborebg.jpg"
+          src="/assets/coimaborebg.webp"
           alt="Coimbatore City Landmark Background"
           fill
-          priority={false}
+          loading="lazy"
           className="object-cover object-center opacity-30 sm:opacity-40 filter contrast-110 brightness-90 transition-transform duration-700"
           sizes="100vw"
         />

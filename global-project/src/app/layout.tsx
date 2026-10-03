@@ -1,17 +1,23 @@
 import type { Metadata, Viewport } from 'next';
-import { Plus_Jakarta_Sans } from 'next/font/google';
+import { Plus_Jakarta_Sans, Outfit } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { QuickChatWidget } from '@/components/common/QuickChatWidget';
-import { GSAPScrollManager } from '@/components/common/GSAPScrollManager';
 import { BookingModalProvider } from '@/components/common/BookingModal';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
   variable: '--font-sans',
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  weight: ['500', '600', '700', '800'],
+  variable: '--font-outfit',
   display: 'swap',
 });
 
@@ -164,26 +170,28 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`scroll-smooth ${plusJakarta.variable}`}>
+    <html lang="en" className={`scroll-smooth ${plusJakarta.variable} ${outfit.variable}`}>
       <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/images/pexels-jakubzerdzicki-35490407.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
       <body
-        itemScope
-        itemType="https://schema.org/LocalBusiness"
         className="min-h-screen flex flex-col bg-[#0A2342] text-gray-900 font-sans antialiased selection:bg-[#FF8C00] selection:text-white"
       >
-        <meta itemProp="name" content="Smart Fix LED TV Center" />
-        <meta itemProp="telephone" content="+918122992491" />
         <BookingModalProvider>
           <Header />
           <main className="flex-1 bg-white">{children}</main>
           <Footer />
           <QuickChatWidget />
-          <GSAPScrollManager />
           <Toaster position="top-right" richColors />
         </BookingModalProvider>
       </body>

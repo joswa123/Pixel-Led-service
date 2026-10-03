@@ -53,9 +53,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 2: Quick Links */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
               Quick Links
-            </h4>
+            </h3>
             <ul className="space-y-2.5 text-sm text-gray-300">
               <li>
                 <a href="#services" className="hover:text-[#FF8C00] transition-colors">
@@ -96,9 +96,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Top Brands Serviced */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
               Top Brands Serviced
-            </h4>
+            </h3>
             <ul className="space-y-2 text-sm text-gray-300">
               <li>Samsung LED &amp; QLED Service</li>
               <li>LG OLED &amp; WebOS Repair</li>
@@ -113,9 +113,9 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Contact Info */}
           <div>
-            <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
               Contact Info
-            </h4>
+            </h3>
             <div className="space-y-3 text-sm text-gray-300">
               <a
                 href="tel:8122992491"

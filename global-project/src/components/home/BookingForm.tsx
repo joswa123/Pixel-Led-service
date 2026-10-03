@@ -93,7 +93,7 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
     >
       <div className="mb-5 pb-4 border-b border-gray-100">
         <div className="flex items-center justify-between gap-2 mb-1.5">
-          <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-[#FF8C00] bg-orange-50 px-2.5 py-0.5 rounded">
+          <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-[#C2410C] bg-orange-50 px-2.5 py-0.5 rounded">
             <Clock className="h-3 w-3" /> Fast Doorstep Visit
           </span>
           <span className="text-xs font-semibold text-gray-500">

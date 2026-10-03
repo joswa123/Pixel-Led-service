@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, LazyMotion, domAnimation } from 'framer-motion';
 import { Hero } from '@/components/home/Hero';
 import { WarrantyGuarantee } from '@/components/home/WarrantyGuarantee';
 import { ServiceCarousel } from '@/components/home/ServiceCarousel';
@@ -19,7 +19,8 @@ export default function HomePage() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <div className="flex flex-col">
+    <LazyMotion features={domAnimation}>
+      <div className="flex flex-col">
       {/* 1. Hero Section (Split Layout: Left Value Proposition + Right Image with Overlay & Booking Trigger) */}
       <Hero />
 
@@ -123,5 +124,6 @@ export default function HomePage() {
         </div>
       </motion.section>
     </div>
+    </LazyMotion>
   );
 }

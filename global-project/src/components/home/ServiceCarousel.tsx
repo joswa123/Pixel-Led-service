@@ -121,7 +121,7 @@ export const ServiceCarousel: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#FF8C00] bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200 mb-2">
+            <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C2410C] bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200 mb-2">
               <Wrench className="h-3.5 w-3.5" /> Component-Level Precision
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-extrabold text-[#0A192F] tracking-tight leading-tight">
@@ -199,6 +199,7 @@ export const ServiceCarousel: React.FC = () => {
                       src={svc.image}
                       alt={svc.title}
                       fill
+                      loading="lazy"
                       className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
                     />
@@ -230,9 +231,9 @@ export const ServiceCarousel: React.FC = () => {
                         <SvcIcon className="h-5 w-5" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-black text-[#0A192F] leading-snug group-hover:text-[#FF8C00] transition-colors font-curvy">
+                        <h3 className="text-lg font-black text-[#0A192F] leading-snug group-hover:text-[#FF8C00] transition-colors font-curvy">
                           {svc.title}
-                        </h4>
+                        </h3>
                         <span className="text-[11px] font-bold text-emerald-600">
                           {svc.quoteTag}
                         </span>
@@ -308,9 +309,9 @@ export const ServiceCarousel: React.FC = () => {
                 <HelpCircle className="h-6 w-6" />
               </div>
               <div>
-                <h4 className="text-lg sm:text-xl font-black text-white font-curvy leading-snug">
+                <h3 className="text-lg sm:text-xl font-black text-white font-curvy leading-snug">
                   Don&apos;t See Your Exact TV Issue Listed Above?
-                </h4>
+                </h3>
                 <p className="text-xs sm:text-sm text-gray-300 mt-1 max-w-2xl leading-relaxed font-normal">
                   From lightning surge damage and sound IC failure to water ingress and remote sensor issues, our senior engineers arrive equipped with doorstep testing gear across all Coimbatore PIN codes.
                 </p>

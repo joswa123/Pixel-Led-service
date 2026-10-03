@@ -43,7 +43,7 @@ export const HowItWorks: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#FF8C00] bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200 mb-2">
+          <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#C2410C] bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200 mb-2">
             Simple 3-Step Process
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-extrabold text-[#0A2342] tracking-tight leading-tight">
@@ -99,9 +99,10 @@ export const HowItWorks: React.FC = () => {
           {/* Left Column: Image 5 (Vintage TV repair / craftsmanship) */}
           <div className="lg:col-span-5 relative h-64 sm:h-80 lg:h-full min-h-[320px] w-full">
             <Image
-              src="/assets/images/smartfix-about.jpg"
+              src="/assets/images/smartfix-about.webp"
               alt="Smart Fix electronics technician craftsmanship and repair history"
               fill
+              loading="lazy"
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 45vw"
             />

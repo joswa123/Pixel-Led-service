@@ -85,7 +85,7 @@ export const Testimonials: React.FC = () => {
 
               <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-[#0A2342]">{rev.name}</h4>
+                  <h3 className="text-sm font-bold text-[#0A2342]">{rev.name}</h3>
                   <div className="flex items-center gap-1 text-xs text-gray-500 mt-0.5">
                     <MapPin className="h-3 w-3 text-[#FF8C00]" />
                     <span>{rev.area}</span>

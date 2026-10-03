@@ -104,7 +104,7 @@ export const WarrantyGuarantee: React.FC = () => {
                   <h3 className="text-xl sm:text-2xl font-black text-[#0A2342] mb-1">
                     {item.title}
                   </h3>
-                  <div className="text-xs font-bold text-[#FF8C00] uppercase tracking-wide mb-3">
+                  <div className="text-xs font-bold text-[#C2410C] uppercase tracking-wide mb-3">
                     {item.subtitle}
                   </div>
                   <p className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">

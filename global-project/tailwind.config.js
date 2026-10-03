@@ -37,6 +37,7 @@ export default {
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        outfit: ['var(--font-outfit)', 'Outfit', 'sans-serif'],
       },
       boxShadow: {
         card: "0 2px 10px -2px rgba(10, 35, 66, 0.06), 0 8px 24px -4px rgba(10, 35, 66, 0.08)",

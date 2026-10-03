@@ -56,13 +56,14 @@ export const Hero: React.FC<HeroProps> = () => {
 
   return (
     <section className="relative min-h-[88vh] flex flex-col justify-between text-white pt-8 sm:pt-12 pb-14 sm:pb-16 overflow-hidden border-b border-navy-900">
-      {/* 1. HERO BACKGROUND IMAGE: pexels-jakubzerdzicki-35490407 with Deep Obsidian / Navy Multi-Layer Overlay */}
+      {/* 1. HERO BACKGROUND IMAGE: pexels-jakubzerdzicki-35490407.webp with Deep Obsidian / Navy Multi-Layer Overlay */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
-          src="/assets/images/pexels-jakubzerdzicki-35490407.jpg"
+          src="/assets/images/pexels-jakubzerdzicki-35490407.webp"
           alt="Smart Fix LED TV Center professional smart TV repair Coimbatore living room"
           fill
           priority
+          fetchPriority="high"
           className="object-cover object-center scale-105"
           sizes="100vw"
         />
@@ -186,10 +187,11 @@ export const Hero: React.FC<HeroProps> = () => {
               {/* Framed Image Container with Clean Natural Shadow */}
               <div className="relative aspect-[4/3] sm:aspect-[14/11] lg:aspect-[5/4] rounded-3xl overflow-hidden shadow-2xl border border-white/20">
                 <Image
-                  src="/assets/images/Gemini_Generated_Image_rc0kuvrc0kuvrc0k.png"
+                  src="/assets/images/Gemini_Generated_Image_rc0kuvrc0kuvrc0k.webp"
                   alt="Smart Fix Senior LED TV Repair Technician testing TV doorstep in Coimbatore"
                   fill
                   priority
+                  fetchPriority="high"
                   className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 45vw"
                 />

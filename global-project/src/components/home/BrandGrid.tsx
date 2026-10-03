@@ -26,6 +26,7 @@ interface BrandGridProps {
 }
 
 const top5Slugs = ['samsung', 'lg', 'sony', 'mi', 'tcl'];
+const tickerBrands = activeBrands.slice(0, 7);
 
 export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
   const [activeTab, setActiveTab] = useState<'all' | 'top' | 'active' | 'coming'>('top');
@@ -151,8 +152,8 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
            ───────────────────────────────────────────────────────────── */}
         <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-2 overflow-hidden shadow-lg">
           <div className="flex items-center overflow-hidden">
-            <div className="flex gap-3 animate-marquee hover:[animation-play-state:paused] whitespace-nowrap py-1">
-              {[...activeBrands, ...activeBrands].map((brand, idx) => (
+            <div className="flex gap-3 animate-marquee will-change-transform transform-gpu hover:[animation-play-state:paused] whitespace-nowrap py-1">
+              {[...tickerBrands, ...tickerBrands].map((brand, idx) => (
                 <button
                   key={`${brand.slug}-${idx}`}
                   type="button"
@@ -289,9 +290,9 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
         {displayedBrands.length === 0 ? (
           <div className="rounded-2xl border border-white/15 bg-white/5 backdrop-blur-md p-10 text-center space-y-3">
             <Tv className="h-10 w-10 text-gray-400 mx-auto" />
-            <h4 className="text-base font-bold text-white font-curvy">
+            <h3 className="text-base font-bold text-white font-curvy">
               No matching brands found for &quot;{searchQuery}&quot;
-            </h4>
+            </h3>
             <p className="text-xs sm:text-sm text-gray-300 max-w-md mx-auto">
               Smart Fix fixes unlisted, imported, and rare TV brands as well. Click below to inquire directly with our technician.
             </p>
@@ -353,9 +354,9 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
                     </div>
 
                     {/* Brand Name */}
-                    <h4 className="text-sm sm:text-base lg:text-lg font-black text-white group-hover:text-amber-300 transition-colors leading-tight font-curvy">
+                    <h3 className="text-sm sm:text-base lg:text-lg font-black text-white group-hover:text-amber-300 transition-colors leading-tight font-curvy">
                       {highlightMatch(brand.name, searchQuery)}
-                    </h4>
+                    </h3>
 
                     {/* Specialization */}
                     <p className="text-[10px] sm:text-[11px] text-gray-300 mt-1 line-clamp-1 font-normal">
@@ -390,9 +391,9 @@ export const BrandGrid: React.FC<BrandGridProps> = ({ onSelectBrand }) => {
               <Wrench className="h-5 w-5" />
             </div>
             <div>
-              <h4 className="text-base font-black text-white font-curvy">
+              <h3 className="text-base font-black text-white font-curvy">
                 Don&apos;t see your TV brand or have an imported model?
-              </h4>
+              </h3>
               <p className="text-xs sm:text-sm text-gray-300 mt-0.5">
                 We service all customized displays, commercial monitors, and imported brands across Coimbatore.
               </p>
