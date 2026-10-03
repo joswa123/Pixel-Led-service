@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { HelpCircle, ChevronDown, Phone } from 'lucide-react';
 
 export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const shouldReduceMotion = useReducedMotion();
 
   const faqs = [
     {
@@ -13,7 +15,7 @@ export const FAQ: React.FC = () => {
     },
     {
       q: 'Do you repair Smart TVs?',
-      a: 'Yes, BrightSide TV specializes in all Smart TV operating systems including Android TV, Google TV, LG WebOS, Samsung Tizen, VIDAA, and Mi PatchWall. We resolve motherboard reboot loops, Wi-Fi connectivity problems, HDMI port issues, and firmware crashes.',
+      a: 'Yes, Smart Fix specializes in all Smart TV operating systems including Android TV, Google TV, LG WebOS, Samsung Tizen, VIDAA, and Mi PatchWall. We resolve motherboard reboot loops, Wi-Fi connectivity problems, HDMI port issues, and firmware crashes.',
     },
     {
       q: 'What if my TV has sound but no display?',
@@ -21,11 +23,11 @@ export const FAQ: React.FC = () => {
     },
     {
       q: 'Do you offer warranty on repairs?',
-      a: 'Yes! BrightSide TV provides official written warranty cards on all replaced components: 1-Year Comprehensive Warranty on Display & Panel replacements, and 6-Month Written Warranty on Motherboard and Backlight replacements.',
+      a: 'Yes! Smart Fix provides official written warranty cards on all replaced components: 1-Year Comprehensive Warranty on Display & Panel replacements, and 6-Month Written Warranty on Motherboard and Backlight replacements.',
     },
     {
       q: 'How long does the TV repair take?',
-      a: 'We try to reach you within a day, and many locations across Coimbatore receive doorstep service in just a few hours based on your area. Doorstep diagnostic is arranged promptly, and common repairs like backlight replacement, motherboard fixes, and wall-mounting are completed swiftly.',
+      a: 'We provide doorstep repair across Coimbatore within Day 1-2. Doorstep diagnosis is arranged promptly, and common repairs like backlight replacement, motherboard fixes, and wall-mounting are completed swiftly.',
     },
     {
       q: 'Do you service all Coimbatore areas and PIN codes?',
@@ -37,7 +39,7 @@ export const FAQ: React.FC = () => {
     },
     {
       q: 'Can I book via WhatsApp?',
-      a: 'Yes! You can simply submit the booking form above, or click any WhatsApp button to message us directly at +91 81229 92491. We typically respond within 2 hours.',
+      a: 'Yes! You can click "Book Repair" anywhere on this page to send a structured booking message, or chat directly with our technician dispatch at +91 81229 92491.',
     },
   ];
 
@@ -46,17 +48,24 @@ export const FAQ: React.FC = () => {
   };
 
   return (
-    <section id="faq" className="section-padding bg-white border-b border-gray-200">
+    <motion.section
+      id="faq"
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.65, ease: 'easeOut' }}
+      className="section-padding bg-white border-b border-gray-200"
+    >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#FF8C00] bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200 mb-2">
             <HelpCircle className="h-3.5 w-3.5" /> Clear Answers &amp; Policies
           </div>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0A2342] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-extrabold text-[#0A2342] tracking-tight leading-tight">
             Frequently Asked Questions
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 mt-1">
-            Everything you need to know about BrightSide TV repair process, free quotes, and warranty policies in Coimbatore.
+          <p className="text-sm sm:text-base text-gray-600 mt-2.5 max-w-2xl mx-auto leading-relaxed font-normal">
+            Everything you need to know about Smart Fix TV repair process, free quotes, and warranty policies in Coimbatore.
           </p>
         </div>
 
@@ -106,7 +115,7 @@ export const FAQ: React.FC = () => {
           </a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

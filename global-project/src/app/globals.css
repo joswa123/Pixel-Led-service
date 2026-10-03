@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,17 +8,97 @@
   html {
     scroll-behavior: smooth;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 
   body {
-    background-color: #FFFFFF;
+    background-color: #0A2342;
     color: #1F2937;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: var(--font-sans), 'Plus Jakarta Sans', 'Outfit', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
   }
 }
+
+/* Hide Next.js dev indicator badge ('N' button on bottom left) */
+[data-nextjs-dev-indicator],
+[data-nextjs-toast-wrapper],
+[data-nextjs-dialog-overlay],
+nextjs-portal,
+#nextjs-dev-tools,
+div[data-next-badge],
+div[data-nextjs-portal] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Eliminate horizontal window scrollbars */
+html::-webkit-scrollbar:horizontal,
+body::-webkit-scrollbar:horizontal {
+  display: none !important;
+  height: 0px !important;
+  opacity: 0 !important;
+}
+
+/* Brand Typography Utilities */
+.font-curvy {
+  font-family: var(--font-sans), 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.section-title {
+  font-family: var(--font-sans), 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  font-size: 1.875rem;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 2.65rem;
+  }
+}
+
+.section-subtitle {
+  font-size: 0.9375rem;
+  line-height: 1.625;
+  font-weight: 400;
+}
+
+@media (min-width: 640px) {
+  .section-subtitle {
+    font-size: 1.0625rem;
+  }
+}
+
+.logo-curvy-title {
+  font-family: var(--font-sans), 'Plus Jakarta Sans', 'Outfit', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.logo-glow-orange {
+  filter: drop-shadow(0px 3px 10px rgba(255, 107, 0, 0.4));
+}
+
+.logo-glow-cyan {
+  filter: drop-shadow(0px 2px 8px rgba(0, 229, 255, 0.35));
+}
+
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
@@ -47,138 +129,19 @@
   }
 }
 
-/* ─────────────────────────────────────────────────────────────
-   BRIGHTSIDE TV TURN-ON ANIMATION & PRELOADER KEYFRAMES
-   ───────────────────────────────────────────────────────────── */
-@keyframes tv-line-horizontal {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  30% {
-    width: 100%;
-    opacity: 1;
-  }
-  100% {
-    width: 100%;
-    opacity: 1;
-  }
+/* Custom Scrollbar Utilities for Scrollable Containers */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-
-@keyframes tv-line-vertical {
-  0% {
-    height: 0;
-  }
-  100% {
-    height: 100%;
-  }
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(10, 35, 66, 0.05);
+  border-radius: 9999px;
 }
-
-@keyframes tv-flicker {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 140, 0, 0.4);
+  border-radius: 9999px;
 }
-
-@keyframes logo-glow {
-  0% {
-    opacity: 0;
-    transform: scale(0.92);
-    filter: drop-shadow(0 0 0px #FFB347);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.02);
-    filter: drop-shadow(0 0 25px #FFB347);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-    filter: drop-shadow(0 0 16px rgba(255, 179, 71, 0.6));
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes loading-bar {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-.tv-turn-on {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: fade-out 0.4s ease-out 3.4s forwards;
-  pointer-events: auto;
-}
-
-.tv-screen {
-  width: 0;
-  height: 0;
-  background: #0A2342;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  animation: 
-    tv-line-horizontal 0.4s ease-out forwards,
-    tv-line-vertical 0.35s ease-out 0.4s forwards,
-    tv-flicker 0.25s ease-in-out 0.75s;
-  box-shadow: 0 0 70px rgba(255, 179, 71, 0.35);
-}
-
-.tv-logo {
-  width: 290px;
-  max-width: 85vw;
-  height: auto;
-  opacity: 0;
-  animation: logo-glow 0.6s ease-out 0.8s forwards;
-}
-
-.loading-bar-container {
-  width: 200px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-  margin-top: 24px;
-  overflow: hidden;
-  opacity: 0;
-  animation: fade-in 0.3s ease-out 1.2s forwards;
-}
-
-.loading-bar {
-  height: 100%;
-  background: #FFB347;
-  border-radius: 2px;
-  width: 0%;
-  animation: loading-bar 1.8s ease-in-out 1.3s forwards;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 140, 0, 0.8);
 }

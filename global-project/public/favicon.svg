@@ -1,10 +1,26 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <rect width="64" height="64" rx="14" fill="#0A2342"/>
-  <!-- Diagonal Light Ray from top of B -->
-  <path d="M22 18 L10 6" stroke="#FFB347" stroke-width="3" stroke-linecap="round"/>
-  <path d="M30 12 L24 4" stroke="#FFB347" stroke-width="2.5" stroke-linecap="round"/>
-  <!-- Letter B -->
-  <text x="16" y="48" font-family="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif" font-weight="900" font-size="42" fill="#FFFFFF">B</text>
-  <!-- Subtle orange dot accent -->
-  <circle cx="48" cy="42" r="3" fill="#FFB347"/>
+  <defs>
+    <linearGradient id="favShieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#0A192F" />
+      <stop offset="100%" stopColor="#050B14" />
+    </linearGradient>
+    <linearGradient id="favLaserGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#FF6B00" />
+      <stop offset="100%" stopColor="#FFA000" />
+    </linearGradient>
+  </defs>
+
+  <!-- Curvy Squircle Shield -->
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#favShieldGrad)" stroke="#38BDF8" stroke-width="2" />
+  <rect x="6" y="6" width="52" height="52" rx="14" fill="#050B14" />
+
+  <!-- Fluid Curvy S -->
+  <path d="M 27 20 C 27 16 23 14 18 14 C 13 14 10 17 10 21 C 10 28 27 26 27 34 C 27 40 22 43 16 43 C 11 43 9 39 9 36" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+  <!-- Curvy Bold F -->
+  <path d="M 35 45 V 15 H 49 M 35 29 H 45" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+
+  <!-- Electric Laser Wave -->
+  <path d="M 6 32 C 16 32, 22 25, 32 32 C 41 38, 48 29, 58 32" stroke="url(#favLaserGrad)" stroke-width="3" stroke-linecap="round" fill="none" />
+  <circle cx="51" cy="18" r="3" fill="#00E5FF" />
 </svg>

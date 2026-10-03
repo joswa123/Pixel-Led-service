@@ -3,27 +3,29 @@
 import React, { useState } from 'react';
 import { Phone, Menu, X } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
-import { BrightSideLogo } from './BrightSideLogo';
+import { SmartFixLogo } from './SmartFixLogo';
+import { useBookingModal } from './BookingModal';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { openBookingModal } = useBookingModal();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md transition-all shadow-sm">
-      {/* Top micro bar */}
+      {/* Top micro announcement bar */}
       <div className="bg-[#0A2342] text-white px-4 py-1.5 text-xs font-medium">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-emerald-300 font-semibold">Coimbatore Doorstep Service:</span>
-            <span className="hidden sm:inline text-gray-200">All Brands &bull; In Hours to 1 Day &bull; Free Diagnosis</span>
+            <span className="text-emerald-300 font-semibold">Smart Fix Coimbatore:</span>
+            <span className="hidden sm:inline text-gray-200">Doorstep Repair Within Day 1-2 &bull; Free Diagnosis &bull; All Brands Serviced</span>
           </div>
 
           <div className="flex items-center gap-4 text-xs">
             <a
               href="tel:8122992491"
               itemProp="telephone"
-              className="flex items-center gap-1.5 text-amber-300 hover:text-white font-bold transition-colors"
+              className="flex items-center gap-1.5 text-[#FF8C00] hover:text-white font-bold transition-colors"
             >
               <Phone className="h-3 w-3 fill-current" />
               <span>Helpline: 8122992491</span>
@@ -37,12 +39,12 @@ export const Header: React.FC = () => {
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex py-2.5 sm:py-3 items-center justify-between min-h-[68px] md:min-h-[76px]">
-          {/* Logo Left: BrightSide TV Letter-Only Wordmark (h-12 md:h-14) - No Subtitle */}
-          <a href="#" className="flex items-center group shrink-0" aria-label="BrightSide TV Home">
-            <BrightSideLogo className="h-10 sm:h-12 md:h-14 w-auto group-hover:scale-105 transition-transform" />
+          {/* Logo Left: SMART FIX Letter-Only Wordmark (h-12 md:h-14) */}
+          <a href="#" className="flex items-center group shrink-0" aria-label="Smart Fix LED TV Center Home">
+            <SmartFixLogo className="h-10 sm:h-12 md:h-14 w-auto group-hover:scale-105 transition-transform" />
           </a>
 
-          {/* Center Nav */}
+          {/* Center Nav: Home, Services, Brands, Areas, FAQ, Contact */}
           <nav className="hidden lg:flex items-center justify-center gap-8 text-sm font-semibold text-gray-700 mx-auto">
             <a href="#" className="hover:text-[#FF8C00] transition-colors">
               Home
@@ -78,12 +80,13 @@ export const Header: React.FC = () => {
               <span>8122992491</span>
             </a>
 
-            <a
-              href="#booking-form"
+            <button
+              type="button"
+              onClick={() => openBookingModal()}
               className="flex items-center gap-1.5 px-5 py-2.5 rounded-lg text-xs sm:text-sm font-bold text-white bg-[#FF8C00] hover:bg-[#EA580C] shadow-cta transition-all hover:scale-105 active:scale-95"
             >
               Book Repair
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -151,22 +154,34 @@ export const Header: React.FC = () => {
             Contact &amp; Support
           </a>
 
-          <div className="pt-2 border-t border-gray-100 flex gap-2">
-            <a
-              href="tel:8122992491"
-              itemProp="telephone"
-              className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#0A2342] py-2.5 text-xs font-bold text-white"
+          <div className="pt-2 border-t border-gray-100 flex flex-col gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                openBookingModal();
+              }}
+              className="w-full py-3 rounded-lg bg-[#FF8C00] text-white text-xs font-black shadow-cta"
             >
-              <Phone className="h-4 w-4 text-[#FF8C00] fill-current" /> Call 8122992491
-            </a>
-            <a
-              href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#25D366] py-2.5 text-xs font-bold text-white"
-            >
-              <FaWhatsapp className="h-4 w-4" /> WhatsApp
-            </a>
+              Book Repair Now
+            </button>
+            <div className="flex gap-2">
+              <a
+                href="tel:8122992491"
+                itemProp="telephone"
+                className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#0A2342] py-2.5 text-xs font-bold text-white"
+              >
+                <Phone className="h-4 w-4 text-[#FF8C00] fill-current" /> Call 8122992491
+              </a>
+              <a
+                href="https://wa.me/918122992491?text=Hi%20Smart%20Fix,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-1.5 rounded-lg bg-[#25D366] py-2.5 text-xs font-bold text-white"
+              >
+                <FaWhatsapp className="h-4 w-4" /> WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       )}

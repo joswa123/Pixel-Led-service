@@ -1,28 +1,31 @@
 'use client';
 
 import React from 'react';
-import { Tv, Phone, MapPin, Mail, Clock, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { Phone, MapPin, Mail, Clock, ShieldCheck } from 'lucide-react';
 import { FaWhatsapp, FaGoogle } from 'react-icons/fa';
-import { BrightSideLogo } from './BrightSideLogo';
+import { SmartFixLogo } from './SmartFixLogo';
+import { useBookingModal } from './BookingModal';
 
 export const Footer: React.FC = () => {
+  const { openBookingModal } = useBookingModal();
+
   return (
-    <footer id="contact" className="bg-[#0A2342] text-gray-300 pt-16 pb-28 md:pb-14 border-t border-navy-800">
+    <footer id="contact" className="bg-[#0A2342] text-gray-300 pt-16 pb-12 sm:pb-14 border-t border-navy-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1: Logo & Brief Description */}
           <div className="space-y-4">
             <div className="flex items-center">
-              <BrightSideLogo variant="light" className="h-10 md:h-12 w-auto" />
+              <SmartFixLogo variant="light" className="h-10 md:h-12 w-auto" />
             </div>
 
             <p className="text-sm text-gray-300 leading-relaxed">
-              Coimbatore&apos;s trusted multi-brand LED, OLED, 4K &amp; Smart TV repair service. Certified chip-level repairs, Laser COF bonding, and written warranty on all spare parts.
+              Coimbatore&apos;s trusted LED, OLED, 4K &amp; Smart TV repair service center. Professional chip-level repairs, Laser COF bonding, and written warranty on all genuine spare parts.
             </p>
 
             <div className="flex items-center gap-3 pt-2">
               <a
-                href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
+                href="https://wa.me/918122992491?text=Hi%20Smart%20Fix,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="WhatsApp"
@@ -80,14 +83,18 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#booking-form" className="hover:text-[#FF8C00] transition-colors">
+                <button
+                  type="button"
+                  onClick={() => openBookingModal()}
+                  className="hover:text-[#FF8C00] transition-colors text-left font-semibold text-amber-300"
+                >
                   Book Doorstep Inspection
-                </a>
+                </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Top Brands */}
+          {/* Column 3: Top Brands Serviced */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
               Top Brands Serviced
@@ -107,7 +114,7 @@ export const Footer: React.FC = () => {
           {/* Column 4: Contact Info */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-l-2 border-[#FF8C00] pl-2.5">
-              Contact &amp; Support
+              Contact Info
             </h4>
             <div className="space-y-3 text-sm text-gray-300">
               <a
@@ -123,7 +130,7 @@ export const Footer: React.FC = () => {
               </a>
 
               <a
-                href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
+                href="https://wa.me/918122992491?text=Hi%20Smart%20Fix,%20I%20need%20TV%20repair%20service%20in%20Coimbatore."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-start gap-2.5 hover:text-emerald-400 transition-colors"
@@ -131,21 +138,21 @@ export const Footer: React.FC = () => {
                 <FaWhatsapp className="h-4 w-4 text-[#25D366] shrink-0 mt-0.5" />
                 <div>
                   <div className="font-bold text-white">+91 81229 92491</div>
-                  <div className="text-xs text-emerald-300">WhatsApp Instant Booking</div>
+                  <div className="text-xs text-emerald-300">WhatsApp Instant Dispatch</div>
                 </div>
               </a>
 
               <div className="flex items-start gap-2.5">
                 <Mail className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
                 <div className="text-xs text-gray-300">
-                  support@brightsidetv.in
+                  contact@smartfixtv.in
                 </div>
               </div>
 
               <div className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
                 <div className="text-xs leading-relaxed text-gray-300">
-                  Doorstep coverage across all 641xxx PIN codes in Coimbatore District
+                  Doorstep coverage across all Coimbatore pincodes &amp; surrounding areas
                 </div>
               </div>
 
@@ -153,20 +160,20 @@ export const Footer: React.FC = () => {
                 <Clock className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
                 <div className="text-xs text-gray-300">
                   Mon - Sat: 9:00 AM - 8:00 PM<br />
-                  <span className="text-gray-400">Sunday: 10:00 AM - 4:00 PM (Emergency calls)</span>
+                  <span className="text-gray-400">Sunday: 10:00 AM - 4:00 PM</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom copyright line */}
+        {/* Bottom copyright line as requested */}
         <div className="pt-8 border-t border-navy-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <div>
-            &copy; 2026 BrightSide TV. All rights reserved.
+            &copy; 2026 Smart Fix. All rights reserved.
           </div>
           <div className="text-center sm:text-right text-gray-300 font-medium">
-            Service available across all Coimbatore pincodes &bull; Doorstep in Hours to 1 Day &bull; Helpline: 8122992491
+            Service across all Coimbatore pincodes &bull; Helpline: 8122992491
           </div>
         </div>
       </div>

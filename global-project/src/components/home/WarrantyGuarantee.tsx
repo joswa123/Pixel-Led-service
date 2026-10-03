@@ -1,14 +1,18 @@
 'use client';
 
-import React from 'react';
-import { ShieldCheck, Phone, CheckCircle2, Award, Zap, Tv, Cpu, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
+import { ShieldCheck, Phone, CheckCircle2, Tv, Cpu, Award } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
+import { useBookingModal } from '@/components/common/BookingModal';
 
 export const WarrantyGuarantee: React.FC = () => {
+  const { openBookingModal } = useBookingModal();
+  const shouldReduceMotion = useReducedMotion();
+
   const warranties = [
     {
       id: 'display',
-      title: 'Display Replacement',
+      title: 'Display & Panel Replacement',
       duration: '1 Year Warranty',
       subtitle: 'Full Screen & Panel Coverage',
       desc: '100% genuine factory-sealed LED, LCD, OLED & QLED panel replacement. Zero dead pixel guarantee, vibrant 4K clarity, and full 365-day written warranty.',
@@ -23,7 +27,7 @@ export const WarrantyGuarantee: React.FC = () => {
     },
     {
       id: 'motherboard',
-      title: 'Motherboard Replacement',
+      title: 'Motherboard & Power Board',
       duration: '6 Months Warranty',
       subtitle: 'Complete Main & Power Board',
       desc: 'OEM tested motherboards and high-grade power supply modules with chip-level micro-soldering. Solves standby light blinking, reboot loops, and HDMI faults.',
@@ -33,16 +37,16 @@ export const WarrantyGuarantee: React.FC = () => {
         '6-Month Written Replacement Warranty',
         'Factory Tested ICs & Micro-Controller Chips',
         'Protection Against Voltage Surge Failures',
-        'Service in Hours to 1 Day (Based on Location)',
+        'Doorstep Repair Within Day 1-2',
       ],
     },
     {
       id: 'backlight',
-      title: 'Backlight Replacement',
+      title: 'Backlight Strip Upgrade',
       duration: '6 Months Warranty',
       subtitle: 'Full Array LED Strip Upgrade',
       desc: 'Complete replacement of old backlight arrays with 100% brand-new, high-luminance LED strips. Permanently fixes black screen with audio, dim display, or blue tint.',
-      icon: Sparkles,
+      icon: Award,
       badgeBg: 'bg-emerald-600 text-white',
       points: [
         '6-Month Written Warranty on LED Strips',
@@ -54,18 +58,25 @@ export const WarrantyGuarantee: React.FC = () => {
   ];
 
   return (
-    <section id="warranty" className="section-padding bg-gradient-to-b from-white to-gray-50 border-b border-gray-200">
+    <motion.section
+      id="warranty"
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.65, ease: 'easeOut' }}
+      className="section-padding bg-gradient-to-b from-white to-gray-50 border-b border-gray-200"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0A2342] bg-navy-50 px-3 py-1 rounded-full border border-navy-100 mb-3">
             <ShieldCheck className="h-4 w-4 text-[#FF8C00]" /> Written Service &amp; Spares Guarantee
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#0A2342] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-extrabold text-[#0A2342] tracking-tight leading-tight">
             Official Warranty Protection
           </h2>
-          <p className="text-sm sm:text-base text-gray-600 mt-2 leading-relaxed">
-            Every replacement component from BrightSide TV is backed by an official written warranty card. If any recurring issue occurs during your warranty window, we fix it at <strong>zero extra cost</strong>.
+          <p className="text-sm sm:text-base text-gray-600 mt-2.5 max-w-2xl mx-auto leading-relaxed font-normal">
+            Every replacement component from Smart Fix is backed by an official written warranty card. If any recurring issue occurs during your warranty window, we fix it at <strong>zero extra cost</strong>.
           </p>
         </div>
 
@@ -113,13 +124,13 @@ export const WarrantyGuarantee: React.FC = () => {
 
                 {/* CTA Action */}
                 <div className="pt-6 mt-6 border-t border-gray-100">
-                  <a
-                    href="tel:8122992491"
+                  <button
+                    type="button"
+                    onClick={() => openBookingModal({ service: item.title })}
                     className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-gray-100 hover:bg-[#0A2342] text-[#0A2342] hover:text-white font-bold text-xs transition-all shadow-sm"
                   >
-                    <Phone className="h-3.5 w-3.5 text-[#FF8C00]" />
                     <span>Free Quote For {item.title}</span>
-                  </a>
+                  </button>
                 </div>
               </div>
             );
@@ -134,7 +145,7 @@ export const WarrantyGuarantee: React.FC = () => {
             </div>
             <div>
               <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-300 mb-1">
-                <Zap className="h-3.5 w-3.5 fill-current" /> Instant Direct Helpline
+                <ShieldCheck className="h-3.5 w-3.5 fill-current" /> Instant Direct Helpline
               </div>
               <h3 className="text-xl sm:text-2xl font-black text-white leading-tight">
                 Need Fast Doorstep TV Repair in Coimbatore?
@@ -156,7 +167,7 @@ export const WarrantyGuarantee: React.FC = () => {
             </a>
 
             <a
-              href="https://wa.me/918122992491?text=Hi%20BrightSide%20TV,%20I%20need%20doorstep%20TV%20repair%20service."
+              href="https://wa.me/918122992491?text=Hi%20Smart%20Fix,%20I%20need%20doorstep%20TV%20repair%20service."
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 md:flex-initial flex items-center justify-center gap-2 h-12 px-5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm shadow-ctaGreen transition-all hover:scale-105 active:scale-95"
@@ -167,7 +178,7 @@ export const WarrantyGuarantee: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

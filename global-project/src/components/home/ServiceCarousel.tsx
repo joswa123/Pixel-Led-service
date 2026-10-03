@@ -1,384 +1,345 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
+import Image from 'next/image';
+import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import {
   Tv,
   CircuitBoard,
   Wrench,
   Microscope,
-  Sparkles,
+  Award,
   Cpu,
   Building,
   CheckCircle2,
-  Phone,
   ShieldCheck,
+  ArrowRight,
+  HelpCircle,
+  Phone,
   Clock,
-  Zap,
 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { services, Service } from '@/data/services';
-import { Button20 } from '@/components/common/Button20';
+import { useBookingModal } from '@/components/common/BookingModal';
 
 const iconMap = {
   Tv,
   CircuitBoard,
   Wrench,
   Microscope,
-  Sparkles,
+  Award,
   Cpu,
   Building,
 };
 
-export const ServiceCarousel: React.FC = () => {
-  const [activeId, setActiveId] = useState<string>(services[0].id);
+const symptomTags: Record<string, string[]> = {
+  'panel-repair': ['Screen Lines', 'Double Picture', 'Flickering'],
+  'motherboard': ['Standby Light', 'No Power', 'HDMI Fault'],
+  'backlight': ['Black Screen', 'Sound OK', 'Dim Picture'],
+  'cof-bonding': ['Water Damage', 'COF IC Bond', 'Half Screen'],
+  'wall-mount': ['Fixed & Swivel', 'Concealed Wires', '32″ - 85″'],
+  'software': ['Android Logo Stuck', 'Boot Loop', 'Wi-Fi Issue'],
+};
 
-  const activeService = services.find((s) => s.id === activeId) || services[0];
-  const ActiveIcon = iconMap[activeService.iconName] || Tv;
+const servicePerks: Record<string, string[]> = {
+  'panel-repair': [
+    'Original factory-sealed display panel restoration',
+    'Zero dead pixel guarantee & 4K color testing',
+    '1-Year Comprehensive Replacement Warranty',
+  ],
+  motherboard: [
+    'OEM tested boards & chip-level micro-soldering',
+    'Solves standby red light, boot loops & HDMI faults',
+    '6-Month Written Replacement Warranty',
+  ],
+  backlight: [
+    '100% brand-new OEM high-luminance LED strips',
+    'Fixes black screen with audio & blue tint issues',
+    '6-Month High-Luminance Written Warranty',
+  ],
+  'cof-bonding': [
+    'Precision laser COF IC micro-bonding machine',
+    'Fixes vertical lines, color bars & water damage',
+    '6-Month Laser Bonding Warranty',
+  ],
+  'wall-mount': [
+    'Fixed, tilt & 180° swivel heavy-duty brackets',
+    'Support for 32" to 85"+ LED & Curved TVs',
+    'Same-Day doorstep installation in Coimbatore',
+  ],
+  software: [
+    'Android TV, Google TV, WebOS & Tizen recovery',
+    'Boot logo loop fix & firmware flash update',
+    'Fast Day 1 doorstep software fix',
+  ],
+};
+
+export const ServiceCarousel: React.FC = () => {
+  const [selectedFilter, setSelectedFilter] = useState<string>('all');
+  const { openBookingModal } = useBookingModal();
+  const shouldReduceMotion = useReducedMotion();
 
   const handleWhatsAppQuote = (svc: Service) => {
-    const msg = `Hi BrightSide TV, I need repair service for *${svc.title}*. Please share a free quote and technician availability in Coimbatore.`;
+    const msg = `Hi Smart Fix, I need repair service for *${svc.title}*. Please share a free quote and technician availability in Coimbatore.`;
     window.open(`https://wa.me/918122992491?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
-  const handleScrollToForm = () => {
-    const el = document.getElementById('booking-form');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+  const filteredServices = useMemo(() => {
+    if (selectedFilter === 'all') return services;
+    return services.filter((s) => s.id === selectedFilter);
+  }, [selectedFilter]);
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.08,
+      },
+    },
   };
 
-  // Highlights mapped per service for the featured expanded card
-  const servicePerks: Record<string, string[]> = {
-    'display-replacement': [
-      'Original factory-sealed LED/QLED/OLED panels',
-      'Zero dead pixel guarantee & 4K color testing',
-      '1-Year Comprehensive Replacement Warranty',
-      'Bubble-pack doorstep delivery & installation',
-    ],
-    motherboard: [
-      'OEM tested boards & chip-level micro-soldering',
-      'Solves standby red light, boot loops & HDMI faults',
-      '6-Month Written Replacement Warranty',
-      'High-grade voltage surge protected ICs',
-    ],
-    backlight: [
-      'Complete 100% brand-new high-luminance LED strips',
-      'Fixes black screen with audio & blue tint issues',
-      '6-Month High-Luminance Written Warranty',
-      'Uniform heat-sink aluminum backing',
-    ],
-    'cof-bonding': [
-      'Precision laser COF IC micro-bonding machine',
-      'Fixes vertical lines, color bars & water damage',
-      '6-Month Laser Bonding Warranty',
-      'Clean room static-free lab restoration',
-    ],
-    'panel-repair': [
-      'T-Con board repair & voltage regulator tuning',
-      'Fixes double-image, negative display & flicker',
-      '90-Day Written Service Warranty',
-      'Cost-effective alternative to panel replacement',
-    ],
-    'wall-mount': [
-      'Fixed, tilt & 180° swivel heavy-duty brackets',
-      'Support for 32" to 85"+ LED & Curved TVs',
-      'Concealed cable management & level alignment',
-      'Same-Day doorstep installation in Coimbatore',
-    ],
-    software: [
-      'Android TV, Google TV, WebOS & Tizen recovery',
-      'Boot logo loop fix & firmware flash update',
-      'App crashing & Wi-Fi driver resolution',
-      'Fast same-day doorstep software fix',
-    ],
-    commercial: [
-      'Preventive AMC maintenance contracts',
-      'Display upkeep for hotels, showrooms & offices',
-      'Priority emergency callouts within 2 hours',
-      'Bulk servicing discounts across Coimbatore',
-    ],
+  const cardVariants: Variants = {
+    hidden: shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: 'easeOut' },
+    },
   };
-
-  const currentPerks = servicePerks[activeService.id] || [
-    'Certified senior technicians with doorstep kit',
-    'Written warranty card issued on completion',
-    'Transparent upfront estimate with zero hidden fees',
-    'Reach you within a day (in hours based on location across Coimbatore)',
-  ];
-
-  // Symptoms solved per service
-  const serviceSymptoms: Record<string, string[]> = {
-    'display-replacement': ['Vertical/Horizontal Lines', 'Cracked Screen', 'Blank Screen', 'Color Distortion'],
-    motherboard: ['Standby Red Light', 'No Power Boot', 'HDMI No Signal', 'Frequent Restart'],
-    backlight: ['Sound OK No Picture', 'Dim Dark Screen', 'Blue/Purple Tint', 'Screen Flickering'],
-    'cof-bonding': ['Rainbow Lines', 'Water Damage Corrosion', 'Half Screen Blank', 'Jittering Picture'],
-    'panel-repair': ['Double Image Ghosting', 'Negative Colors', 'Slow Motion Display', 'Flicker'],
-    'wall-mount': ['32" to 85" Screens', 'Concrete & Brick Walls', '180° Full Motion Swivel', 'Concealed Cabling'],
-    software: ['Stuck on Android Logo', 'App Crash / Freezing', 'Wi-Fi Driver Failure', 'Firmware Flash'],
-    commercial: ['Hotel Room Displays', 'Showroom Video Walls', 'Conference Monitors', 'Preventive AMC'],
-  };
-
-  // Diagnostic specs per service
-  const serviceSpecs: Record<string, { label: string; value: string }[]> = {
-    'display-replacement': [
-      { label: 'Screen Sizes', value: '32" to 85"+' },
-      { label: 'Panel Types', value: 'LED, OLED, QLED, 4K' },
-      { label: 'QC Testing', value: 'Zero Dead-Pixel Test' },
-      { label: 'Service Mode', value: 'Doorstep / Lab' },
-    ],
-    motherboard: [
-      { label: 'Components', value: 'OEM ICs & Regulators' },
-      { label: 'Diagnostics', value: 'Micro-Soldering Lab' },
-      { label: 'Protection', value: 'Voltage Surge Shield' },
-      { label: 'Turnaround', value: 'In Hours to 1 Day' },
-    ],
-    backlight: [
-      { label: 'Strip Quality', value: '100% Brand-New OEM' },
-      { label: 'Substrate', value: 'Aluminum Heat Sink' },
-      { label: 'Balance', value: 'Uniform LUX Output' },
-      { label: 'Service', value: 'Same-Day In-Home' },
-    ],
-    'cof-bonding': [
-      { label: 'Technology', value: 'Pulse Laser Heat' },
-      { label: 'Accuracy', value: '0.01mm Micro-Pitch' },
-      { label: 'Chamber', value: 'Anti-Static Dust-Free' },
-      { label: 'Savings', value: 'Up to 70% vs New TV' },
-    ],
-    'panel-repair': [
-      { label: 'Circuit', value: 'T-Con & Gate Drivers' },
-      { label: 'Method', value: 'Side COF Micro-Rework' },
-      { label: 'Testing', value: 'Gamma & LVDS Scope' },
-      { label: 'Turnaround', value: 'Day 1 Doorstep' },
-    ],
-    'wall-mount': [
-      { label: 'Bracket Grade', value: 'Heavy Carbon Steel' },
-      { label: 'Load Limit', value: 'Tested up to 75kg' },
-      { label: 'Leveling', value: 'Magnetic Spirit Level' },
-      { label: 'Speed', value: 'Within 2 Hours' },
-    ],
-    software: [
-      { label: 'Supported OS', value: 'Android, Google, WebOS, Tizen' },
-      { label: 'Flashing', value: 'Direct ROM Firmware' },
-      { label: 'App Suite', value: 'Factory App Recovery' },
-      { label: 'Turnaround', value: 'Same-Day Doorstep' },
-    ],
-    commercial: [
-      { label: 'Contract', value: 'Flexible AMC Plans' },
-      { label: 'SLA', value: 'Under 2-Hour Response' },
-      { label: 'Maintenance', value: 'Quarterly Deep Clean' },
-      { label: 'Coverage', value: 'All Coimbatore Hubs' },
-    ],
-  };
-
-  const currentSymptoms = serviceSymptoms[activeService.id] || [
-    'No Picture',
-    'Display Distortion',
-    'Power Issues',
-    'Audio Faults',
-  ];
-
-  const currentSpecs = serviceSpecs[activeService.id] || [
-    { label: 'Technicians', value: 'Certified Senior Staff' },
-    { label: 'Warranty', value: 'Written Guarantee Card' },
-    { label: 'Pricing', value: 'Free Transparent Quote' },
-    { label: 'Turnaround', value: 'In Hours to 1 Day' },
-  ];
 
   return (
-    <section id="services" className="section-padding bg-[#F8F9FA] border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.section
+      id="services"
+      initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="section-padding bg-[#F8F9FA] border-b border-gray-200 overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <div className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#FF8C00] bg-orange-50 px-2.5 py-1 rounded-md border border-orange-200 mb-2">
               <Wrench className="h-3.5 w-3.5" /> Component-Level Precision
             </div>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0A2342] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.65rem] font-extrabold text-[#0A192F] tracking-tight leading-tight">
               Common TV Issues We Solve
             </h2>
-            <p className="text-sm sm:text-base text-gray-600 mt-1 max-w-2xl">
-              Professional doorstep diagnostic across Coimbatore. Click on any service on the right to view full details and request a <strong>Free Quote</strong>.
+            <p className="text-sm sm:text-base text-gray-600 mt-2 max-w-2xl font-normal leading-relaxed">
+              Professional doorstep diagnostic across Coimbatore. Genuine OEM parts, certified engineers, and up to 1-Year written warranty.
             </p>
           </div>
 
-          <Button20 href="#booking-form">
-            Book Doorstep Inspection
-          </Button20>
+          <button
+            type="button"
+            onClick={() => openBookingModal()}
+            className="self-start md:self-auto flex items-center gap-2 h-11 px-5 rounded-xl bg-[#0A192F] hover:bg-[#050B14] text-white font-bold text-xs sm:text-sm shadow-sm transition-all hover:scale-105 active:scale-95 font-curvy shrink-0"
+          >
+            <span>Book TV Inspection</span>
+            <ArrowRight className="h-4 w-4" />
+          </button>
         </div>
 
-        {/* Balanced 2-Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-          {/* Left Expanded Featured Service Card (5 Cols, Sticky & Senior-Designer Proportions) */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24 bg-[#0A2342] text-white rounded-2xl p-5 sm:p-6 shadow-hover border border-navy-800 relative overflow-hidden space-y-4">
-            <div className="absolute top-0 right-0 w-44 h-44 bg-[#FFB347]/15 rounded-full blur-3xl pointer-events-none" />
+        {/* Filter Pills Bar */}
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar">
+          {[
+            { id: 'all', label: 'All 6 Common Issues' },
+            { id: 'panel-repair', label: 'Display & Panel' },
+            { id: 'motherboard', label: 'Motherboard & Power' },
+            { id: 'backlight', label: 'Backlight / LED Strips' },
+            { id: 'cof-bonding', label: 'Laser COF Bonding' },
+            { id: 'wall-mount', label: 'Wall Mounting' },
+            { id: 'software', label: 'Smart TV OS' },
+          ].map((tab) => {
+            const isSelected = selectedFilter === tab.id;
+            return (
+              <button
+                key={tab.id}
+                type="button"
+                onClick={() => setSelectedFilter(tab.id)}
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-black transition-all shrink-0 font-curvy ${
+                  isSelected
+                    ? 'bg-[#0A192F] text-white shadow-md scale-102'
+                    : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200 shadow-2xs'
+                }`}
+              >
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
 
-            {/* Top Icons & Badges */}
-            <div className="flex items-center justify-between gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-amber-300 border border-white/15 shadow-xs p-2.5">
-                <ActiveIcon className="h-6 w-6" />
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-xs font-bold uppercase tracking-wider bg-[#FFB347] text-[#0A2342] px-3 py-1 rounded-full shadow-xs">
-                  {activeService.warranty}
-                </span>
-                <span className="text-xs font-bold uppercase tracking-wider bg-white/10 px-3 py-1 rounded-full text-gray-200 border border-white/10">
-                  {activeService.timeEstimate}
-                </span>
-              </div>
-            </div>
+        {/* ─────────────────────────────────────────────────────────────
+            BALANCED FULL-WIDTH GRID (No empty white spaces on any screen!)
+           ───────────────────────────────────────────────────────────── */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch"
+        >
+          {filteredServices.map((svc) => {
+            const SvcIcon = iconMap[svc.iconName] || Tv;
+            const tags = symptomTags[svc.id] || [];
+            const perks = servicePerks[svc.id] || [];
 
-            {/* Title & Description */}
-            <div>
-              <h3 className="text-2xl sm:text-[1.65rem] font-black text-white mb-1.5 leading-tight">
-                {activeService.title}
-              </h3>
-              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                {activeService.description}
-              </p>
-            </div>
+            return (
+              <motion.div
+                key={svc.id}
+                variants={cardVariants}
+                className="group relative flex flex-col justify-between rounded-2xl overflow-hidden border border-gray-200/90 hover:border-[#0A192F] bg-white shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                {/* Real Image Header */}
+                {svc.image && (
+                  <div className="relative h-48 w-full overflow-hidden bg-gray-100">
+                    <Image
+                      src={svc.image}
+                      alt={svc.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 380px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    
+                    <div className="absolute top-3 right-3">
+                      <span className="text-[10px] font-black uppercase tracking-wider text-white bg-black/65 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/20 font-curvy">
+                        {svc.badge}
+                      </span>
+                    </div>
 
-            {/* Symptoms Treated Tags */}
-            <div className="space-y-1.5 pt-1">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-gray-400">
-                Fixes Common Symptoms:
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {currentSymptoms.map((sym, i) => (
-                  <span
-                    key={i}
-                    className="text-[11px] font-semibold text-amber-200 bg-white/10 px-2 py-0.5 rounded-md border border-white/10"
-                  >
-                    &bull; {sym}
-                  </span>
-                ))}
-              </div>
-            </div>
+                    <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white">
+                      <span className="text-[11px] font-black bg-[#FF8C00] text-white px-2.5 py-0.5 rounded-md font-curvy shadow-xs">
+                        {svc.warranty}
+                      </span>
+                      <span className="text-[10px] font-bold bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded text-gray-200">
+                        {svc.timeEstimate}
+                      </span>
+                    </div>
+                  </div>
+                )}
 
-            {/* Key Highlights Bullet List */}
-            <div className="space-y-2 p-3.5 rounded-xl bg-white/5 border border-white/10">
-              <div className="text-[11px] font-black uppercase tracking-wider text-amber-300 flex items-center gap-1.5">
-                <ShieldCheck className="h-3.5 w-3.5 text-[#FFB347]" /> Key Service Advantages:
-              </div>
-              <ul className="space-y-1.5 text-xs text-gray-200">
-                {currentPerks.map((perk, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                    <span>{perk}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Diagnostic Specs 2x2 Grid */}
-            <div className="grid grid-cols-2 gap-2 p-3 rounded-xl bg-black/20 border border-white/10">
-              {currentSpecs.map((spec, i) => (
-                <div key={i} className="space-y-0.5">
-                  <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">
-                    {spec.label}
-                  </span>
-                  <p className="text-xs font-bold text-white leading-tight">
-                    {spec.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom Group: Pricing + CTAs */}
-            <div className="pt-3 border-t border-white/15 space-y-3">
-              {/* Pricing Tag */}
-              <div className="flex flex-wrap items-center justify-between gap-2">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-xs text-gray-400 font-medium">Pricing:</span>
-                  <span className="text-xl sm:text-2xl font-black text-[#FFB347]">
-                    Call for Free Quote
-                  </span>
-                </div>
-                <span className="text-[11px] text-emerald-300 font-bold bg-emerald-500/20 px-2.5 py-0.5 rounded-full border border-emerald-500/30">
-                  Zero Hidden Fees
-                </span>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center gap-2.5">
-                <a
-                  href="tel:8122992491"
-                  itemProp="telephone"
-                  className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-white hover:bg-gray-100 text-[#0A2342] font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-all hover:scale-[1.02] active:scale-95"
-                >
-                  <Phone className="h-4 w-4 text-[#FF8C00] fill-current" />
-                  <span>Call 8122992491</span>
-                </a>
-
-                <button
-                  type="button"
-                  onClick={() => handleWhatsAppQuote(activeService)}
-                  className="w-full sm:flex-1 py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-ctaGreen transition-all hover:scale-[1.02] active:scale-95"
-                >
-                  <FaWhatsapp className="h-4 w-4" />
-                  <span>WhatsApp Quote</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Cards Grid: Exactly 8 Cards in 4 Rows × 2 Columns (Zero Missing Slots) */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-            {services.map((svc) => {
-              const isCurrent = svc.id === activeId;
-              const SvcIcon = iconMap[svc.iconName] || Tv;
-
-              return (
-                <div
-                  key={svc.id}
-                  onClick={() => setActiveId(svc.id)}
-                  className={`group relative flex flex-col justify-between rounded-xl p-4 sm:p-5 border transition-all cursor-pointer select-none bg-white ${
-                    isCurrent
-                      ? 'border-[#0A2342] ring-2 ring-[#FFB347]/80 shadow-hover bg-orange-50/20'
-                      : 'border-gray-200 hover:border-gray-300 hover:shadow-card hover:bg-gray-50/50'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-2.5">
-                      <div className={`flex h-10 w-10 items-center justify-center rounded-xl transition-colors ${
-                        isCurrent
-                          ? 'bg-[#0A2342] text-amber-300'
-                          : 'bg-gray-100 text-[#0A2342] group-hover:bg-[#0A2342] group-hover:text-amber-300'
-                      }`}>
+                {/* Card Body */}
+                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="space-y-3">
+                    {/* Icon & Title */}
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-50 text-[#0A192F] group-hover:bg-[#0A192F] group-hover:text-amber-300 transition-colors shrink-0 border border-navy-100 shadow-xs">
                         <SvcIcon className="h-5 w-5" />
                       </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100">
-                          {svc.warranty}
-                        </span>
-                        <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500 bg-gray-100 px-1.5 py-0.5 rounded">
-                          {svc.timeEstimate}
+                      <div>
+                        <h4 className="text-lg font-black text-[#0A192F] leading-snug group-hover:text-[#FF8C00] transition-colors font-curvy">
+                          {svc.title}
+                        </h4>
+                        <span className="text-[11px] font-bold text-emerald-600">
+                          {svc.quoteTag}
                         </span>
                       </div>
                     </div>
 
-                    <h4 className="text-sm font-bold text-[#0A2342] mb-1 leading-snug group-hover:text-[#FF8C00] transition-colors">
-                      {svc.title}
-                    </h4>
-                    <p className="text-xs text-gray-500 line-clamp-2 leading-relaxed">
+                    {/* Description */}
+                    <p className="text-xs text-gray-600 leading-relaxed font-normal">
                       {svc.description}
                     </p>
+
+                    {/* Symptoms Tags */}
+                    {tags.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="text-[10px] font-semibold text-gray-700 bg-gray-100 px-2 py-0.5 rounded-md"
+                          >
+                            &bull; {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* 3 Key Perks */}
+                    <div className="space-y-1.5 pt-2 border-t border-gray-100 text-xs text-gray-700">
+                      {perks.map((perk, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                          <span className="text-[11px] leading-tight">{perk}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
-                  <div className="mt-3.5 pt-2.5 border-t border-gray-100 flex items-center justify-between text-xs">
-                    <span className="font-bold text-[#FF8C00]">
-                      Call for Quote
-                    </span>
-                    <span className="text-[#0A2342] font-extrabold group-hover:translate-x-0.5 transition-transform flex items-center gap-1">
-                      {isCurrent ? 'Viewing' : 'Details'} &rarr;
-                    </span>
+                  {/* Action Buttons */}
+                  <div className="pt-3 border-t border-gray-100 flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() => openBookingModal({ service: svc.title })}
+                      className="flex-1 py-2.5 px-3 rounded-xl bg-[#0A192F] hover:bg-[#FF8C00] text-white font-black text-xs shadow-xs transition-colors flex items-center justify-center gap-1.5 font-curvy"
+                    >
+                      <span>Book Inspection</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => handleWhatsAppQuote(svc)}
+                      className="py-2.5 px-3 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shrink-0 shadow-xs"
+                      title="WhatsApp Quote"
+                    >
+                      <FaWhatsapp className="h-4 w-4" />
+                      <span className="hidden sm:inline">Quote</span>
+                    </button>
                   </div>
                 </div>
-              );
-            })}
+              </motion.div>
+            );
+          })}
+        </motion.div>
+
+        {/* ─────────────────────────────────────────────────────────────
+            FULL-WIDTH ASSISTANCE CALLOUT BANNER (Spans all columns)
+           ───────────────────────────────────────────────────────────── */}
+        <div className="rounded-2xl bg-[#0A192F] text-white p-6 sm:p-8 shadow-xl border border-navy-800 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-[#FF8C00]/10 rounded-full blur-3xl pointer-events-none" />
+
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+            <div className="flex items-start gap-4 text-left">
+              <div className="h-12 w-12 rounded-xl bg-[#FF8C00]/20 text-[#FF8C00] flex items-center justify-center shrink-0 border border-[#FF8C00]/30">
+                <HelpCircle className="h-6 w-6" />
+              </div>
+              <div>
+                <h4 className="text-lg sm:text-xl font-black text-white font-curvy leading-snug">
+                  Don&apos;t See Your Exact TV Issue Listed Above?
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-300 mt-1 max-w-2xl leading-relaxed font-normal">
+                  From lightning surge damage and sound IC failure to water ingress and remote sensor issues, our senior engineers arrive equipped with doorstep testing gear across all Coimbatore PIN codes.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto shrink-0">
+              <a
+                href="tel:8122992491"
+                className="flex-1 lg:flex-initial h-11 px-5 rounded-xl bg-white hover:bg-gray-100 text-[#0A192F] font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-sm font-curvy"
+              >
+                <Phone className="h-4 w-4 text-[#FF8C00] fill-current" />
+                <span>Call 8122992491</span>
+              </a>
+
+              <a
+                href="https://wa.me/918122992491?text=Hi%20Smart%20Fix,%20I%20have%20a%20TV%20fault%20not%20listed.%20Can%20you%20help%20diagnose%20it?"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 lg:flex-initial h-11 px-5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-ctaGreen transition-all font-curvy"
+              >
+                <FaWhatsapp className="h-4 w-4" />
+                <span>WhatsApp Diagnostic</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

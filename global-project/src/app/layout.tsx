@@ -2,10 +2,11 @@ import type { Metadata, Viewport } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
-import Preloader from '@/components/common/Preloader';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
-import { MobileStickyCTA } from '@/components/common/MobileStickyCTA';
+import { QuickChatWidget } from '@/components/common/QuickChatWidget';
+import { GSAPScrollManager } from '@/components/common/GSAPScrollManager';
+import { BookingModalProvider } from '@/components/common/BookingModal';
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -22,11 +23,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'BrightSide TV | LED TV Repair Coimbatore | All Brands',
+  title: 'Smart Fix | LED TV Repair Coimbatore | All Brands',
   description:
     'Expert LED, LCD & Smart TV repair in Coimbatore. Samsung, LG, Sony, Mi, TCL & more. Doorstep service. Call 8122992491.',
   keywords: [
-    'BrightSide TV',
+    'Smart Fix',
+    'Smart Fix LED TV Center',
     'LED TV repair Coimbatore',
     'TV service centre Coimbatore',
     'Samsung TV repair',
@@ -36,38 +38,41 @@ export const metadata: Metadata = {
     'Mi TV repair Gandhipuram',
     'Laser COF bonding Coimbatore',
   ],
-  authors: [{ name: 'BrightSide TV Service Centre' }],
-  metadataBase: new URL('https://globaltvrepaircoimbatore.com'),
+  authors: [{ name: 'Smart Fix LED TV Center' }],
+  metadataBase: new URL('https://smartfixtvcoimbatore.com'),
   alternates: {
-    canonical: 'https://globaltvrepaircoimbatore.com',
+    canonical: 'https://smartfixtvcoimbatore.com',
   },
   icons: {
-    icon: '/favicon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
     apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'BrightSide TV | LED TV Repair Coimbatore | All Brands',
+    title: 'Smart Fix | LED TV Repair Coimbatore | All Brands',
     description:
       'Expert LED, LCD & Smart TV repair in Coimbatore. Samsung, LG, Sony, Mi, TCL & more. Doorstep service. Call 8122992491.',
     type: 'website',
     locale: 'en_IN',
-    url: 'https://globaltvrepaircoimbatore.com',
-    siteName: 'BrightSide TV',
+    url: 'https://smartfixtvcoimbatore.com',
+    siteName: 'Smart Fix LED TV Center',
     images: [
       {
-        url: '/hero-technician.jpg',
+        url: '/assets/images/smartfix-hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'BrightSide TV Service Centre Coimbatore',
+        alt: 'Smart Fix LED TV Center Coimbatore',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'BrightSide TV | LED TV Repair Coimbatore | All Brands',
+    title: 'Smart Fix | LED TV Repair Coimbatore | All Brands',
     description:
-      'Doorstep TV service in Coimbatore. 1-Year Display Warranty, 6-Month Motherboard & Backlight Warranty. Call 8122992491 now!',
-    images: ['/hero-technician.jpg'],
+      'Doorstep TV service in Coimbatore within Day 1-2. 1-Year Display Warranty, 6-Month Motherboard & Backlight Warranty. Call 8122992491 now!',
+    images: ['/assets/images/smartfix-hero.jpg'],
   },
   other: {
     'format-detection': 'telephone=yes',
@@ -100,15 +105,16 @@ export default function RootLayout({
     '@graph': [
       {
         '@type': 'LocalBusiness',
-        '@id': 'https://globaltvrepaircoimbatore.com/#business',
-        name: 'BrightSide TV Service Centre',
-        alternateName: 'BrightSide TV Repair',
-        url: 'https://globaltvrepaircoimbatore.com',
-        logo: 'https://globaltvrepaircoimbatore.com/assets/brightside-tv-logo.svg',
-        image: 'https://globaltvrepaircoimbatore.com/hero-technician.jpg',
+        '@id': 'https://smartfixtvcoimbatore.com/#business',
+        name: 'Smart Fix LED TV Center',
+        alternateName: 'Smart Fix TV Repair',
+        url: 'https://smartfixtvcoimbatore.com',
+        logo: 'https://smartfixtvcoimbatore.com/assets/smart-fix-logo.svg',
+        image: 'https://smartfixtvcoimbatore.com/assets/images/smartfix-hero.jpg',
         telephone: '+918122992491',
         areaServed: 'Coimbatore',
         serviceType: 'LED TV Repair',
+        priceRange: '$$',
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Coimbatore',
@@ -144,13 +150,13 @@ export default function RootLayout({
         potentialAction: [
           {
             '@type': 'CommunicateAction',
-            name: 'Call BrightSide TV Technician',
+            name: 'Call Smart Fix Technician',
             target: 'tel:+918122992491',
           },
           {
             '@type': 'ReserveAction',
             name: 'Book Doorstep TV Inspection',
-            target: 'https://globaltvrepaircoimbatore.com/#booking-form',
+            target: 'https://smartfixtvcoimbatore.com/#booking-form',
           },
         ],
       },
@@ -168,16 +174,18 @@ export default function RootLayout({
       <body
         itemScope
         itemType="https://schema.org/LocalBusiness"
-        className="min-h-screen flex flex-col bg-white text-gray-900 font-sans antialiased selection:bg-[#FF8C00] selection:text-white"
+        className="min-h-screen flex flex-col bg-[#0A2342] text-gray-900 font-sans antialiased selection:bg-[#FF8C00] selection:text-white"
       >
-        <meta itemProp="name" content="BrightSide TV Service Centre" />
+        <meta itemProp="name" content="Smart Fix LED TV Center" />
         <meta itemProp="telephone" content="+918122992491" />
-        <Preloader />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <MobileStickyCTA />
-        <Toaster position="top-right" richColors />
+        <BookingModalProvider>
+          <Header />
+          <main className="flex-1 bg-white">{children}</main>
+          <Footer />
+          <QuickChatWidget />
+          <GSAPScrollManager />
+          <Toaster position="top-right" richColors />
+        </BookingModalProvider>
       </body>
     </html>
   );

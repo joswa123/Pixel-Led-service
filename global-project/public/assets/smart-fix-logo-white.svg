@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 104" fill="none">
+  <defs>
+    <linearGradient id="shieldBgGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#0A192F" />
+      <stop offset="50%" stopColor="#0F2744" />
+      <stop offset="100%" stopColor="#050B14" />
+    </linearGradient>
+    <linearGradient id="curvyLaserGradWhite" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stopColor="#FF6B00" />
+      <stop offset="50%" stopColor="#FFA000" />
+      <stop offset="100%" stopColor="#FF3D00" />
+    </linearGradient>
+    <linearGradient id="cyanGradWhite" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#00E5FF" />
+      <stop offset="100%" stopColor="#0091EA" />
+    </linearGradient>
+    <filter id="curvyGlowWhite" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- CURVY & BOLD BRAND ICON -->
+  <g transform="translate(10, 10)">
+    <rect x="0" y="0" width="84" height="84" rx="24" fill="url(#shieldBgGradWhite)" stroke="#38BDF8" stroke-width="2.5" stroke-opacity="0.6" />
+    <rect x="6" y="6" width="72" height="72" rx="18" fill="#050B14" fill-opacity="0.8" stroke="#1E3A8A" stroke-width="1.2" />
+    <!-- Organic Curvy 'S' -->
+    <path d="M 36 28 C 36 23 31 19 24 19 C 17 19 13 23 13 28 C 13 37 36 34 36 45 C 36 53 29 57 21 57 C 14 57 11 52 11 48" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- Curvy Bold 'F' -->
+    <path d="M 45 59 V 21 C 45 20 46 19 47 19 H 62 M 45 37 H 58" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- Fluid Laser Wave -->
+    <path d="M 8 42 C 22 42, 28 32, 42 42 C 54 50, 62 38, 76 42" stroke="url(#curvyLaserGradWhite)" stroke-width="3" stroke-linecap="round" fill="none" filter="url(#curvyGlowWhite)" />
+    <!-- Luminous Cyan Dot -->
+    <circle cx="68" cy="24" r="3.5" fill="url(#cyanGradWhite)" filter="url(#curvyGlowWhite)" />
+    <circle cx="16" cy="42" r="3" fill="#FFA000" />
+  </g>
+
+  <!-- CURVY, BOLD TYPOGRAPHY (WHITE + ELECTRIC ORANGE) -->
+  <text x="112" y="58" fill="#FFFFFF" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-weight="800" font-size="46" letter-spacing="-0.02em">SMART</text>
+  <text x="286" y="58" fill="#FF6B00" font-family="'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif" font-weight="900" font-size="46" letter-spacing="-0.01em">FIX</text>
+  <path d="M 286 67 C 314 67, 334 69, 372 65" stroke="url(#curvyLaserGradWhite)" stroke-width="3.5" stroke-linecap="round" fill="none" />
+  <rect x="321" y="18" width="10" height="10" rx="3" fill="#FFA000" filter="url(#curvyGlowWhite)" />
+
+  <!-- SUBTITLE -->
+  <g transform="translate(114, 88)">
+    <rect x="0" y="-11" width="136" height="17" rx="8.5" fill="#FF6B00" fill-opacity="0.22" />
+    <text x="12" y="1.5" fill="#FF6B00" font-family="'Outfit', system-ui, sans-serif" font-weight="800" font-size="10.5" letter-spacing="0.22em">LED TV CENTER</text>
+    <circle cx="150" cy="-2.5" r="2.5" fill="#00E5FF" />
+    <text x="162" y="1.5" fill="#94A3B8" font-family="'Outfit', system-ui, sans-serif" font-weight="700" font-size="10.5" letter-spacing="0.26em">COIMBATORE</text>
+  </g>
+</svg>

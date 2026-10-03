@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { z } from 'zod';
 import { FaWhatsapp } from 'react-icons/fa';
-import { ShieldCheck, Clock, CheckCircle2, Send, Zap, Phone } from 'lucide-react';
+import { ShieldCheck, Clock, CheckCircle2, Send, Phone, Truck } from 'lucide-react';
 
 import { FloatingInput } from '@/components/watermelon/floating-input';
 import { activeBrands } from '@/data/brands';
@@ -62,7 +62,7 @@ export const BookingForm: React.FC<BookingFormProps> = ({
   const onSubmit = (data: FormValues) => {
     setIsSubmitting(true);
     try {
-      const message = `Hi BrightSide TV, I need repair service.
+      const message = `Hi Smart Fix LED TV Center, I need doorstep repair service.
 Name: ${data.name}
 Phone: ${data.phone}
 Brand: ${data.brand}
@@ -72,8 +72,8 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
 
       const whatsappUrl = `https://wa.me/918122992491?text=${encodeURIComponent(message)}`;
 
-      toast.success('Opening WhatsApp — we\'ll respond within 2 hours.', {
-        description: 'Connecting to BrightSide TV technician dispatch.',
+      toast.success('Opening WhatsApp — we\'ll respond swiftly.', {
+        description: 'Connecting to Smart Fix technician dispatch.',
         duration: 4000,
         icon: <FaWhatsapp className="h-5 w-5 text-[#25D366]" />,
       });
@@ -94,7 +94,7 @@ Pincode: ${data.pincode ? data.pincode : 'Coimbatore'}`;
       <div className="mb-5 pb-4 border-b border-gray-100">
         <div className="flex items-center justify-between gap-2 mb-1.5">
           <span className="inline-flex items-center gap-1 text-[11px] font-extrabold uppercase tracking-wider text-[#FF8C00] bg-orange-50 px-2.5 py-0.5 rounded">
-            <Zap className="h-3 w-3 fill-current" /> Instant Dispatch
+            <Clock className="h-3 w-3" /> Fast Doorstep Visit
           </span>
           <span className="text-xs font-semibold text-gray-500">
             In Hours to 1 Day

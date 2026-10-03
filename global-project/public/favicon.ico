@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- S and F Monogram in Deep Navy (#0A2342) -->
+  <!-- Letter S -->
+  <path d="M 18 12 C 12 8 6 11 6 17 C 6 25 18 24 18 31 C 18 37 11 40 5 36" 
+        stroke="#0A2342" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" fill="none" />
+
+  <!-- Letter F -->
+  <path d="M 28 10 L 44 10 M 28 10 L 28 38 M 28 24 L 40 24" 
+        stroke="#0A2342" stroke-width="6" stroke-linecap="square" stroke-linejoin="miter" fill="none" />
+
+  <!-- Single thin Vibrant Orange (#FF8C00) line cutting horizontally through middle of both letters -->
+  <line x1="2" y1="24" x2="46" y2="24" stroke="#FF8C00" stroke-width="2.5" stroke-linecap="round" />
+</svg>
